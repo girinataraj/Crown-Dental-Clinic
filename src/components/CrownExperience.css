@@ -1,0 +1,139 @@
+/* ─── Crown Experience ───────────────────── */
+.experience-section {
+  background: var(--color-white);
+  /* Subtle warm glow in background — simulates room lighting */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 75% 30%, rgba(245, 214, 214, 0.18) 0%, transparent 70%);
+}
+
+.experience-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+/* ─── Text side ─ */
+.experience-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin-bottom: var(--space-lg);
+  line-height: 1.12;
+}
+
+.experience-story {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.experience-story p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-navy-muted);
+}
+
+/* Stats row */
+.experience-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(11, 21, 40, 0.08);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-deep-navy);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-navy-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(11, 21, 40, 0.08);
+  flex-shrink: 0;
+}
+
+/* ─── Visual side ─ */
+.experience-visuals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.exp-img-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  padding: 0;
+  border: 1px solid rgba(11, 21, 40, 0.06);
+}
+
+.exp-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.exp-img-wrapper:hover .exp-img {
+  transform: scale(1.04);
+}
+
+/* ─── Desktop: editorial overlapping layout ─ */
+@media (min-width: 768px) {
+  .experience-grid {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3xl);
+  }
+  .experience-content { flex: 1; }
+  .experience-visuals {
+    flex: 1;
+    position: relative;
+    min-height: 420px;
+    display: block;
+  }
+  .exp-img-wrapper {
+    position: absolute;
+  }
+  .main-img {
+    width: 78%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .main-img .exp-img {
+    height: 280px;
+  }
+  .secondary-img {
+    width: 58%;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    border: 3px solid var(--color-white);
+    box-shadow: 0 8px 30px -8px rgba(11, 21, 40, 0.12);
+  }
+  .secondary-img .exp-img {
+    height: 220px;
+  }
+}

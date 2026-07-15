@@ -1,0 +1,135 @@
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  z-index: 10;
+}
+
+/* Ambient clinic background image */
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.12;
+  filter: saturate(0.3);
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    var(--color-off-white) 0%,
+    rgba(250, 250, 250, 0.85) 30%,
+    transparent 100%
+  );
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.hero-badge-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-deep-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-headline {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  letter-spacing: -1px;
+  margin-bottom: var(--space-lg);
+}
+
+.hero-subheading {
+  font-size: clamp(1.05rem, 4vw, 1.25rem);
+  color: var(--color-navy-muted);
+  max-width: 480px;
+  margin-bottom: var(--space-2xl);
+  line-height: 1.65;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.hero-link {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-deep-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(11, 21, 40, 0.2);
+  transition: text-decoration-color 0.3s;
+}
+
+.hero-link:hover {
+  text-decoration-color: var(--color-deep-navy);
+}
+
+/* Mobile — background image hidden to keep focus on text */
+@media (max-width: 768px) {
+  .hero-bg-image,
+  .hero-bg-overlay {
+    display: none;
+  }
+  .hero-cta-group .btn-primary {
+    width: 100%;
+  }
+  .hero-link {
+    align-self: center;
+  }
+}
+
+/* Desktop Adjustments */
+@media (min-width: 768px) {
+  .hero-cta-group {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+}

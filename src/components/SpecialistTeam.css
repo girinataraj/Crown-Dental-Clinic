@@ -1,0 +1,82 @@
+/* ─── Specialist Team ────────────────────── */
+.specialists-section {
+  background: var(--color-off-white);
+}
+
+.specialists-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* ─── Card ─ */
+.specialist-card {
+  background: var(--color-white);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border: 1px solid rgba(11, 21, 40, 0.06);
+  box-shadow: 0 2px 8px -2px rgba(11, 21, 40, 0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  min-height: 80px; /* Accessible touch area */
+}
+
+.specialist-card:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+}
+
+/* ─── Avatar ─ */
+.specialist-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-luxury);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(212, 146, 154, 0.3);
+}
+
+.specialist-initial {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-deep-navy);
+}
+
+/* ─── Info ─ */
+.specialist-info { flex: 1; }
+
+.specialist-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: var(--color-deep-navy);
+}
+
+.specialist-creds {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-rose-dark);
+  margin-bottom: 2px;
+}
+
+.specialist-role {
+  font-size: 0.875rem;
+  color: var(--color-navy-muted);
+}
+
+/* ─── Desktop ─ */
+@media (min-width: 640px) {
+  .specialists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}

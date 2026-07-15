@@ -1,0 +1,37 @@
+/* ─── Floating WhatsApp Button ───────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-5);
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4),
+              0 1px 4px rgba(0,0,0,0.12);
+  /* Subtle shimmer ring */
+  outline: 2px solid rgba(37, 211, 102, 0.25);
+  outline-offset: 3px;
+  text-decoration: none;
+}
+
+.wa-icon {
+  width: 30px;
+  height: 30px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .whatsapp-float {
+    bottom: var(--space-8);
+    right: var(--space-8);
+    width: 60px;
+    height: 60px;
+  }
+  .wa-icon { width: 32px; height: 32px; }
+}

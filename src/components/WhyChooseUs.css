@@ -1,0 +1,51 @@
+/* ─── Why Choose Us ─────────────────── */
+.why-section {
+  background: var(--color-off-white);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.why-card {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  border: 1px solid rgba(11, 21, 40, 0.06);
+  box-shadow: 0 2px 8px -2px rgba(11, 21, 40, 0.06);
+  cursor: default;
+}
+
+.why-icon {
+  font-size: 1.25rem;
+  width: 44px;
+  height: 44px;
+  background: var(--color-soft-lavender);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px -2px rgba(11, 21, 40, 0.06);
+  margin-bottom: var(--space-xs);
+  color: var(--color-deep-navy);
+  letter-spacing: 0;
+}
+
+.why-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.why-desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}

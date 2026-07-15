@@ -1,0 +1,83 @@
+.intro-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200; /* High enough to cover content during intro */
+  overflow: hidden;
+  background-color: var(--color-deep-navy);
+  pointer-events: all; /* Blocks interaction while intro is active */
+}
+
+.intro-container.intro-completed {
+  pointer-events: none; /* Immediately stop blocking once complete */
+}
+
+.intro-visual-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.intro-video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.intro-bloom-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 40%, var(--color-soft-lavender) 0%, var(--color-rose-accent) 40%, var(--color-deep-navy) 100%);
+  opacity: 0;
+  animation: introPulse 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes introPulse {
+  0% { opacity: 0; transform: scale(1.1); }
+  50% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.intro-dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.intro-hero-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, var(--color-off-white) 90%);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  pointer-events: none; /* Never block interaction */
+}
+
+.intro-completed .intro-hero-gradient {
+  opacity: 1;
+}
+
+.intro-completed .intro-bloom-bg {
+  /* When intro completes, shift the bloom into a bright hero background */
+  animation: none;
+  opacity: 1;
+  background: radial-gradient(circle at 50% 0%, var(--color-soft-lavender) 0%, rgba(245, 214, 214, 0.2) 60%, var(--color-off-white) 100%);
+  transition: background 2s ease;
+}

@@ -1,0 +1,137 @@
+/* ─── Featured Treatments ───────────────── */
+.treatments-section {
+  background: var(--color-white);
+  /* Bottom edge dissolves into off-white for BeforeAfter */
+  --section-bottom-bg: var(--color-off-white);
+}
+
+.treatments-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ─── Card ─ */
+.treatment-card {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+  transition: box-shadow var(--duration-base) var(--ease-out),
+              transform var(--duration-base) var(--ease-out);
+}
+
+.treatment-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: rgba(212, 146, 154, 0.2);
+}
+
+/* Accent top strip */
+.treatment-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-luxury);
+  opacity: 0.9;
+}
+
+/* ─── Card header ─ */
+.tc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.tc-icon {
+  font-size: 1.25rem;
+  background: var(--color-off-white);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.tc-type {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-rose-dark);
+  background: rgba(244, 236, 248, 0.6);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(212, 146, 154, 0.15);
+}
+
+.tc-title {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+  color: var(--color-deep-navy);
+}
+
+.tc-desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: var(--space-5);
+}
+
+/* ─── Inline CTA link ─ */
+.tc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-deep-navy);
+  align-self: flex-start;
+  margin-top: auto;
+  padding: var(--space-1) 0;
+  position: relative;
+  min-height: 44px;
+  align-items: center;
+  transition: color var(--duration-fast);
+}
+
+.tc-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.2;
+  transition: opacity var(--duration-base);
+}
+
+.tc-link:hover { color: var(--color-navy-mid); }
+.tc-link:hover::after { opacity: 0.6; }
+
+/* ─── Desktop 2-col grid ─ */
+@media (min-width: 640px) {
+  .treatments-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+@media (min-width: 960px) {
+  .treatments-stack {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

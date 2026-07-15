@@ -1,0 +1,212 @@
+.treatments-section {
+  padding: var(--section-padding);
+  background-color: var(--off-white);
+  position: relative;
+}
+
+.treatments-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--sky-blue);
+  color: var(--royal-blue);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* Category Headers in Grid */
+.treatments-category {
+  grid-column: 1 / -1;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--royal-blue);
+  margin: 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.treatments-category::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--light-gray);
+}
+
+.treatment-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.treatment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--royal-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+/* Cosmetology Card Variation */
+.treatment-card--cosmetology::before {
+  background: var(--luxury-gradient);
+}
+
+.treatment-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--sky-blue-light);
+}
+
+.treatment-card--cosmetology:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--luxury-pink);
+}
+
+.treatment-card:hover::before {
+  transform: scaleX(1);
+}
+
+.treatment-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: transform var(--transition-base);
+}
+
+/* Dental Icons */
+.treatment-card--dental .treatment-icon-wrapper {
+  background: var(--sky-blue);
+  color: var(--royal-blue);
+}
+
+/* Cosmetology Icons */
+.treatment-card--cosmetology .treatment-icon-wrapper {
+  background: var(--luxury-pink);
+  color: var(--luxury-purple);
+}
+
+.treatment-card:hover .treatment-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.treatment-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--royal-blue);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.treatment-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.treatment-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: gap var(--transition-base);
+}
+
+.treatment-card--dental .treatment-link {
+  color: var(--royal-blue);
+}
+
+.treatment-card--cosmetology .treatment-link {
+  color: var(--luxury-purple);
+}
+
+.treatment-card:hover .treatment-link {
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .treatments-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .treatments-section {
+    padding: 72px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f6f7fb 100%);
+  }
+
+  .treatments-grid {
+    margin-top: 32px;
+    gap: 16px;
+  }
+
+  .treatments-category {
+    font-size: 1.3rem;
+    margin: 12px 0 6px;
+  }
+
+  .treatments-category svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .treatment-card {
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .treatment-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+    align-self: center;
+    display: grid;
+    place-items: center;
+  }
+
+  .treatment-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .treatment-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .treatment-desc {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+}
