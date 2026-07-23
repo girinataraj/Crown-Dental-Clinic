@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { motion, useAnimationFrame, useMotionValue, useReducedMotion } from 'framer-motion';
 import { useGesture } from '@use-gesture/react';
 import './Reviews.css';
@@ -49,7 +49,7 @@ export default function Reviews() {
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const isReducedMotion = useReducedMotion();
-  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleInteractStart = useCallback(() => {
     setIsPaused(true);
@@ -69,17 +69,17 @@ export default function Reviews() {
     }, 2500);
   }, []);
 
-  useAnimationFrame((t, delta) => {
+  useAnimationFrame((_, delta) => {
     if (isPaused || isReducedMotion) return;
     if (!trackRef.current) return;
-    
+
     const trackWidth = trackRef.current.scrollWidth;
     // The duplicated list's single instance width is half of the total width
     const halfWidth = trackWidth / 2;
-    
+
     // Slow, premium, effortless motion
-    const moveBy = -0.03 * delta; 
-    
+    const moveBy = -0.03 * delta;
+
     let newX = x.get() + moveBy;
     newX = wrap(-halfWidth, 0, newX);
     x.set(newX);
@@ -90,7 +90,7 @@ export default function Reviews() {
       if (intentional && event && event.cancelable) event.preventDefault();
       if (down) handleInteractStart();
       else handleInteractEnd();
-      
+
       if (!trackRef.current) return;
       const halfWidth = trackRef.current.scrollWidth / 2;
       let newX = x.get() + dx;
@@ -101,7 +101,7 @@ export default function Reviews() {
       // Prioritize horizontal scrolling, but allow vertical delta to also scroll reviews horizontally 
       // if it's the primary intent (e.g. standard mouse wheel)
       const moveBy = Math.abs(dx) > Math.abs(dy) ? -dx : -dy;
-      
+
       handleInteractStart();
       if (!trackRef.current) return;
       const halfWidth = trackRef.current.scrollWidth / 2;
@@ -124,8 +124,8 @@ export default function Reviews() {
   return (
     <section id="reviews" className="reviews-section">
       <div className="container">
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -136,19 +136,19 @@ export default function Reviews() {
           <h2>What Our Patients Say</h2>
           <div className="reviews-google-badge">
             <span className="rgb-score">4.9</span>
-            <div className="rgb-stars"><StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/></div>
+            <div className="rgb-stars"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /></div>
             <span className="rgb-text">Based on 150+ Google Reviews</span>
           </div>
         </motion.div>
 
         <div className="reviews-scroll-container" {...bind()}>
-          <motion.div 
+          <motion.div
             ref={trackRef}
             style={{ x }}
             className="reviews-track"
           >
             {reviews.map((r, i) => (
-              <motion.div 
+              <motion.div
                 key={`${r.name}-${i}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -158,13 +158,13 @@ export default function Reviews() {
               >
                 <div className="review-quote-mark" aria-hidden="true">"</div>
                 <p className="review-text">{r.text}</p>
-                
+
                 <div className="review-author">
                   <div className="review-avatar" aria-hidden="true">{r.initial}</div>
                   <div className="review-meta">
                     <span className="review-name">{r.name}</span>
                     <div className="review-stars-small" aria-label={`${r.rating} out of 5 stars`}>
-                      <StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/>
+                      <StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon />
                     </div>
                   </div>
                 </div>
