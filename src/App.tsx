@@ -43,16 +43,21 @@ function App() {
     // 1. Unlock all scroll/touch IMMEDIATELY
     document.body.style.overflow = '';
     document.body.style.touchAction = '';
-    // 2. Trigger content fade-in
-    setIntroComplete(true);
-    // 3. Unmount the intro overlay after its exit animation (1.5s)
-    setTimeout(() => setShowIntro(false), 1600);
+    
+    // 2. Hold the completed state briefly (300ms), then trigger crossfade
+    setTimeout(() => {
+      // Trigger content fade-in and intro fade-out simultaneously
+      setIntroComplete(true);
+      setShowIntro(false);
+    }, 300);
   };
 
   return (
     <>
       {/* Intro overlay — fully unmounted after completion so no fixed layer remains */}
-      {showIntro && <IntroVideo onComplete={handleIntroComplete} />}
+      <AnimatePresence>
+        {showIntro && <IntroVideo onComplete={handleIntroComplete} />}
+      </AnimatePresence>
 
       {/* Main content — fades in as intro fades out */}
       <AnimatePresence>
@@ -60,7 +65,7 @@ function App() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
+            transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             style={{ position: 'relative', zIndex: 1 }}
           >
             <Navbar />

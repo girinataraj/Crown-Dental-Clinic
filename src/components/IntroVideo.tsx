@@ -39,7 +39,12 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
   }, [isMobile, onComplete]);
 
   return (
-    <div className={`intro-container ${!isPlaying ? 'intro-completed' : ''}`}>
+    <motion.div 
+      className={`intro-container ${!isPlaying ? 'intro-completed' : ''}`}
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    >
       {/* 
         NOTE: Since a real video file is pending, this uses a high-end CSS gradient 
         bloom to simulate the atmospheric luxury feel. When the video is added, 
@@ -74,6 +79,6 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
       
       {/* Soft gradient overlay that stays as part of Hero */}
       <div className="intro-hero-gradient" />
-    </div>
+    </motion.div>
   );
 }
