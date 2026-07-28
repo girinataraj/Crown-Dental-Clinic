@@ -1,220 +1,321 @@
-/* ========================================
+/* ================================================
    Crown Dental & Cosmetology Clinic
-   Mobile-First Luxury Brand CSS — v2 Polish
-   ======================================== */
+   PURPLE LUXURY IMMERSIVE DESIGN SYSTEM
+   ================================================
+   The client loves purple.
+   Purple IS the brand. Purple IS the experience.
+   Every surface breathes purple atmosphere.
+   ================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
-/* ─── Design Tokens ─────────────────────── */
+/* ─── Purple Palette ─────────────────────── */
 :root {
-  /* Brand Palette */
-  --color-white:         #ffffff;
-  --color-off-white:     #f8f8f6;
-  --color-surface:       #f2f0eb;
-  --color-soft-lavender: #F0ECF8;
-  --color-lavender-dark: #E4DDF2;
-  --color-rose-accent:   #F5D6D6;
-  --color-rose-dark:     #D4929A;
-  --color-deep-navy:     #0B1528;
-  --color-navy-light:    #1E2E4A;
-  --color-navy-mid:      #2E4066;
-  --color-navy-muted:    #5A6880;
-  --color-border:        rgba(11, 21, 40, 0.08);
+  /* === Core Purple Scale === */
+  --p-void:       #10002B;
+  --p-deep:       #240046;
+  --p-royal:      #3C096C;
+  --p-violet:     #5A189A;
+  --p-bright:     #7B2CBF;
+  --p-lavender:   #9D4EDD;
+  --p-accent:     #C77DFF;
+  --p-soft:       #E0AAFF;
 
-  /* Gradients */
-  --gradient-luxury:        linear-gradient(135deg, var(--color-soft-lavender) 0%, var(--color-rose-accent) 100%);
-  --gradient-dark:          linear-gradient(135deg, var(--color-deep-navy) 0%, var(--color-navy-light) 100%);
-  --gradient-glass:         linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.72) 100%);
-  --gradient-hero:          linear-gradient(160deg, var(--color-soft-lavender) 0%, #fdf7f7 50%, var(--color-off-white) 100%);
-  /* Section transition gradients — blend bottom of one section into top of the next */
-  --gradient-to-white:      linear-gradient(to bottom, transparent 0%, var(--color-white) 100%);
-  --gradient-to-offwhite:   linear-gradient(to bottom, transparent 0%, var(--color-off-white) 100%);
-  --gradient-from-white:    linear-gradient(to bottom, var(--color-white) 0%, transparent 100%);
-  --gradient-from-offwhite: linear-gradient(to bottom, var(--color-off-white) 0%, transparent 100%);
+  /* === Pastel Atmosphere === */
+  --ps-pink:      #FFCBF2;
+  --ps-rose:      #F3C4FB;
+  --ps-orchid:    #ECBCFD;
+  --ps-lilac:     #E5B3FE;
+  --ps-mauve:     #E2AFFF;
+  --ps-wisteria:  #DEAFFF;
+  --ps-periwinkle:#D8BBFF;
+  --ps-blue:      #D0D1FF;
+  --ps-sky:       #C8E7FF;
+  --ps-cyan:      #C0FDFF;
 
-  /* Typography */
-  --font-heading:  'Montserrat', -apple-system, sans-serif;
-  --font-body:     'Inter', -apple-system, sans-serif;
+  /* === Gold Whisper === */
+  --gold:         #D4AF37;
+  --gold-soft:    #E8D5A0;
+  --gold-glow:    rgba(212, 175, 55, 0.35);
 
-  /* Spacing — 4pt scale, mobile-first */
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  20px;
-  --space-6:  24px;
-  --space-8:  32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
+  /* === Base === */
+  --white:        #FFFFFF;
 
-  /* Legacy aliases (keeps existing components working) */
-  --space-xs:      var(--space-1);
-  --space-sm:      var(--space-2);
-  --space-md:      var(--space-4);
-  --space-lg:      var(--space-6);
-  --space-xl:      var(--space-8);
-  --space-2xl:     var(--space-12);
-  --space-3xl:     var(--space-16);
-  --space-section: var(--space-16);
+  /* === Text on dark purple backgrounds === */
+  --text-white:   #FFFFFF;
+  --text-white-2: rgba(255,255,255,0.85);
+  --text-white-3: rgba(255,255,255,0.60);
+  --text-white-4: rgba(255,255,255,0.40);
 
-  /* Radii */
-  --radius-sm:   6px;
-  --radius-md:   12px;
-  --radius-lg:   20px;
-  --radius-xl:   28px;
+  /* === Text on light backgrounds === */
+  --text-heading:  #1a0a2e;
+  --text-body:     #3d2060;
+  --text-muted:    #7a5da0;
+
+  /* Legacy aliases — keep components working */
+  --color-white:        var(--white);
+  --color-off-white:    #F8F0FF;
+  --color-surface:      #F0E6FA;
+  --color-deep-navy:    var(--p-void);
+  --color-navy-light:   var(--p-deep);
+  --color-navy-mid:     var(--p-royal);
+  --color-navy-muted:   var(--text-muted);
+  --color-rose-dark:    var(--p-bright);
+  --color-rose-accent:  var(--p-soft);
+  --color-soft-lavender: var(--ps-periwinkle);
+  --color-border:       rgba(199, 125, 255, 0.15);
+
+  /* === Section Atmosphere Gradients === */
+  --atm-hero:
+    radial-gradient(ellipse 120% 80% at 70% 20%, rgba(123, 44, 191, 0.40) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 20% 75%, rgba(199, 125, 255, 0.20) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 90%, rgba(255, 203, 242, 0.12) 0%, transparent 40%),
+    linear-gradient(160deg, var(--p-void) 0%, var(--p-deep) 35%, var(--p-royal) 70%, var(--p-violet) 100%);
+
+  --atm-lavender-mist:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(157, 78, 221, 0.12) 0%, transparent 60%),
+    linear-gradient(160deg, #F8F0FF 0%, #F0E6FA 40%, #EDE0F8 100%);
+
+  --atm-purple-glass:
+    radial-gradient(ellipse 100% 70% at 80% 10%, rgba(123, 44, 191, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(199, 125, 255, 0.06) 0%, transparent 50%),
+    linear-gradient(160deg, #F3E8FF 0%, #EAD9FC 50%, #E2D0F5 100%);
+
+  --atm-dark-premium:
+    radial-gradient(ellipse 80% 60% at 60% 30%, rgba(123, 44, 191, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(90, 24, 154, 0.20) 0%, transparent 50%),
+    linear-gradient(160deg, var(--p-void) 0%, var(--p-deep) 50%, #1a0040 100%);
+
+  --atm-purple-gradient:
+    radial-gradient(ellipse 90% 60% at 70% 25%, rgba(157, 78, 221, 0.30) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 10% 90%, rgba(255, 203, 242, 0.10) 0%, transparent 40%),
+    linear-gradient(160deg, var(--p-deep) 0%, var(--p-royal) 50%, var(--p-violet) 100%);
+
+  --atm-soft-lavender:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(224, 170, 255, 0.10) 0%, transparent 60%),
+    linear-gradient(160deg, #F5EDFF 0%, #EFE3FC 50%, #F0E8FF 100%);
+
+  --atm-mesh:
+    radial-gradient(ellipse 50% 50% at 20% 30%, rgba(199, 125, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 80% 70%, rgba(157, 78, 221, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 90%, rgba(255, 203, 242, 0.08) 0%, transparent 40%),
+    linear-gradient(160deg, #F3E8FF 0%, #EDE0F8 40%, #E8D8F5 100%);
+
+  --atm-deep-royal:
+    radial-gradient(ellipse 80% 50% at 50% 20%, rgba(90, 24, 154, 0.40) 0%, transparent 55%),
+    linear-gradient(160deg, #0a0018 0%, var(--p-void) 30%, var(--p-deep) 70%, #1a003d 100%);
+
+  /* === Gradients === */
+  --grad-brand:       linear-gradient(135deg, var(--p-violet) 0%, var(--p-lavender) 100%);
+  --grad-brand-vivid: linear-gradient(135deg, var(--p-bright) 0%, var(--p-accent) 60%, var(--ps-pink) 100%);
+  --grad-text:        linear-gradient(135deg, var(--p-deep) 0%, var(--p-violet) 40%, var(--p-lavender) 100%);
+  --grad-text-light:  linear-gradient(135deg, var(--white) 0%, var(--p-soft) 100%);
+  --grad-dark:        var(--atm-deep-royal);
+
+  /* Legacy */
+  --gradient-luxury:  var(--grad-brand-vivid);
+  --gradient-dark:    var(--grad-dark);
+  --gradient-hero:    var(--atm-hero);
+
+  /* === Shadow System — Purple Ambient === */
+  --shadow-xs:    0 1px 3px rgba(36, 0, 70, 0.08),
+                  0 1px 2px rgba(36, 0, 70, 0.05);
+  --shadow-sm:    0 3px 12px rgba(36, 0, 70, 0.10),
+                  0 1px 3px rgba(36, 0, 70, 0.06);
+  --shadow-soft:  0 4px 24px rgba(36, 0, 70, 0.12),
+                  0 1px 4px rgba(36, 0, 70, 0.06);
+  --shadow-md:    0 8px 32px rgba(36, 0, 70, 0.16),
+                  0 2px 8px rgba(36, 0, 70, 0.08);
+  --shadow-lift:  0 20px 60px rgba(36, 0, 70, 0.22),
+                  0 4px 12px rgba(36, 0, 70, 0.10);
+  --shadow-glow:  0 0 50px rgba(157, 78, 221, 0.30),
+                  0 0 100px rgba(123, 44, 191, 0.15);
+  --shadow-glow-sm: 0 0 24px rgba(157, 78, 221, 0.20);
+  --shadow-btn:   0 4px 20px rgba(90, 24, 154, 0.40),
+                  0 1px 4px rgba(90, 24, 154, 0.25);
+  --shadow-btn-hover:
+                  0 8px 32px rgba(90, 24, 154, 0.50),
+                  0 2px 8px rgba(90, 24, 154, 0.30);
+
+  /* === Liquid Glass System === */
+  --glass-blur:       blur(20px);
+  --glass-blur-sm:    blur(12px);
+  --glass-blur-lg:    blur(32px);
+  /* Glass on DARK purple backgrounds */
+  --glass-dark:       rgba(255, 255, 255, 0.06);
+  --glass-dark-2:     rgba(255, 255, 255, 0.10);
+  --glass-dark-border: 1px solid rgba(255, 255, 255, 0.10);
+  --glass-dark-inner: inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                      inset 0 -1px 0 rgba(0, 0, 0, 0.10);
+  /* Glass on LIGHT lavender backgrounds */
+  --glass-light:      rgba(255, 255, 255, 0.55);
+  --glass-light-2:    rgba(255, 255, 255, 0.72);
+  --glass-light-border: 1px solid rgba(199, 125, 255, 0.20);
+  --glass-light-inner: inset 0 1px 0 rgba(255, 255, 255, 0.80),
+                       inset 0 -1px 0 rgba(90, 24, 154, 0.04);
+
+  /* === Typography === */
+  --font-heading: 'Montserrat', -apple-system, sans-serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+
+  /* === Spacing — 4pt scale === */
+  --space-1:  4px;   --space-2:  8px;   --space-3:  12px;
+  --space-4:  16px;  --space-5:  20px;  --space-6:  24px;
+  --space-8:  32px;  --space-10: 40px;  --space-12: 48px;
+  --space-16: 64px;  --space-20: 80px;  --space-24: 96px;
+
+  --space-xs: var(--space-1);   --space-sm: var(--space-2);
+  --space-md: var(--space-4);   --space-lg: var(--space-6);
+  --space-xl: var(--space-8);   --space-2xl: var(--space-12);
+  --space-3xl: var(--space-16); --space-section: var(--space-16);
+  --space-container: var(--space-6);
+
+  /* === Radii === */
+  --radius-sm:   12px;
+  --radius-md:   20px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-xs:   0 1px 3px rgba(11, 21, 40, 0.06), 0 1px 2px rgba(11, 21, 40, 0.04);
-  --shadow-soft: 0 4px 24px rgba(11, 21, 40, 0.07), 0 1px 4px rgba(11, 21, 40, 0.04);
-  --shadow-md:   0 8px 32px rgba(11, 21, 40, 0.10), 0 2px 8px rgba(11, 21, 40, 0.06);
-  --shadow-lift: 0 16px 48px rgba(11, 21, 40, 0.12), 0 4px 12px rgba(11, 21, 40, 0.06);
-  --shadow-glow: 0 0 24px rgba(212, 146, 154, 0.25);
-
-  /* Glass */
-  --glass-blur:   blur(16px);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.5);
-
-  /* Motion */
-  --ease-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-fast:   180ms;
-  --duration-base:   280ms;
-  --duration-slow:   420ms;
+  /* === Motion === */
+  --ease-luxury:      cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out:         cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:    160ms;
+  --duration-base:    260ms;
+  --duration-slow:    400ms;
+  --duration-cinematic: 700ms;
 }
 
-/* ─── Desktop overrides ──────────────────── */
+@media (min-width: 480px) {
+  :root { --space-container: var(--space-8); }
+}
+
 @media (min-width: 768px) {
   :root {
     --space-section: var(--space-24);
+    --space-container: var(--space-8);
   }
 }
 
-/* ─── Base Reset ─────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@media (min-width: 1024px) {
+  :root { --space-container: var(--space-10); }
 }
+
+/* ─── Base Reset ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
   overflow-x: hidden;
-  /* Prevent x-axis layout shift */
   scrollbar-gutter: stable;
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-deep-navy);
-  background-color: var(--color-off-white);
-  line-height: 1.65;
+  color: var(--text-body);
+  background: var(--p-void);
+  line-height: 1.68;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-img, video {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+img, video { display: block; max-width: 100%; height: auto; }
+svg { display: block; }
+a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+button { background: none; border: none; font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 
-svg {
-  display: block;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  background: none;
-  border: none;
-  font-family: inherit;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ─── Typography ─────────────────────────── */
+/* ─── Typography ──────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 600;
-  line-height: 1.18;
-  color: var(--color-deep-navy);
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
-p {
-  line-height: 1.65;
+p { line-height: 1.72; }
+
+.text-navy-muted { color: var(--text-muted); }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.80rem; }
+
+/* Gradient heading utility */
+.grad-heading {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.text-navy-muted  { color: var(--color-navy-muted); }
-.text-sm          { font-size: 0.875rem; }
-.text-xs          { font-size: 0.8rem; }
+/* ─── Layout ──────────────────────────────── */
+.container { width: 100%; padding-inline: var(--space-6); margin-inline: auto; }
 
-/* ─── Layout ─────────────────────────────── */
-.container {
-  width: 100%;
-  padding-inline: var(--space-5);
-  margin-inline: auto;
-}
+@media (min-width: 480px)  { .container { padding-inline: var(--space-8); } }
+@media (min-width: 768px)  { .container { max-width: 960px; padding-inline: var(--space-8); } }
+@media (min-width: 1024px) { .container { max-width: 1200px; padding-inline: var(--space-10); } }
+@media (min-width: 1280px) { .container { max-width: 1280px; padding-inline: var(--space-12); } }
 
-@media (min-width: 480px)  { .container { padding-inline: var(--space-6); } }
-@media (min-width: 768px)  { .container { max-width: 900px;  padding-inline: var(--space-8); } }
-@media (min-width: 1100px) { .container { max-width: 1140px; padding-inline: var(--space-12); } }
-
-/* ─── Sections ───────────────────────────── */
+/* ─── Sections ────────────────────────────── */
 section {
   padding: var(--space-section) 0;
   position: relative;
   overflow: hidden;
-  /* Anchor scroll offset clears the fixed navbar */
   scroll-margin-top: 72px;
 }
 
-/* ─── Shared Section Header ──────────────── */
+/* ─── Section Badge — Glass Pill ──────────── */
+.section-badge,
 .section-label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.66rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-rose-dark);
-  margin-bottom: var(--space-2);
+  letter-spacing: 0.14em;
+  color: var(--p-accent);
+  background: rgba(199, 125, 255, 0.10);
+  border: 1px solid rgba(199, 125, 255, 0.20);
+  border-radius: var(--radius-full);
+  padding: 5px 14px;
+  margin-bottom: var(--space-3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.section-badge {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-rose-dark);
-  margin-bottom: var(--space-2);
+/* Dark section variant */
+.section-badge--dark {
+  color: var(--p-soft);
+  background: rgba(224, 170, 255, 0.08);
+  border-color: rgba(224, 170, 255, 0.18);
 }
 
-.section-header {
-  margin-bottom: var(--space-10);
+/* Light section variant */
+.section-badge--light {
+  color: var(--p-violet);
+  background: rgba(90, 24, 154, 0.08);
+  border-color: rgba(90, 24, 154, 0.15);
+}
+
+/* ─── Section Header ──────────────────────── */
+.section-header { 
+  margin-bottom: var(--space-12); 
+  display: flex;
+  flex-direction: column;
 }
 
 .section-header h2 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  margin-bottom: var(--space-2);
+  font-size: clamp(1.85rem, 5vw, 2.85rem);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.03em;
 }
 
 .section-header p {
   font-size: 1.0625rem;
-  color: var(--color-navy-muted);
-  max-width: 520px;
+  max-width: 560px;
 }
 
 .section-header.center {
@@ -226,150 +327,216 @@ section {
 
 .section-header.center p { margin-inline: auto; }
 
-/* ─── Glass Utility ──────────────────────── */
+/* Dark section headers */
+.section-header--dark h2 { color: var(--white); }
+.section-header--dark p  { color: var(--text-white-3); }
+
+/* Light section headers */
+.section-header--light h2 {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-header--light p { color: var(--text-muted); }
+
+/* ─── Liquid Glass Panels ─────────────────── */
+/* On dark backgrounds */
 .glass-panel {
-  background: var(--gradient-glass);
+  background: var(--glass-dark);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
+  border: var(--glass-dark-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-soft), var(--glass-dark-inner);
 }
 
-/* ─── Buttons ────────────────────────────── */
+/* On light backgrounds */
+.glass-panel-light {
+  background: var(--glass-light-2);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-light-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft), var(--glass-light-inner);
+}
+
+.glass-panel-subtle {
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(199, 125, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(36, 0, 70, 0.08);
+}
+
+/* ─── Buttons ─────────────────────────────── */
+
+/* Primary — Vivid purple gradient with glass shine */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  background: var(--gradient-dark);
-  color: var(--color-white);
-  padding: 14px 28px;
+  background: var(--grad-brand);
+  color: var(--white);
+  padding: var(--space-4) var(--space-8);
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.9375rem;
   letter-spacing: 0.01em;
-  box-shadow: 0 4px 16px rgba(11, 21, 40, 0.25);
-  transition: transform var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out),
-              opacity var(--duration-base) var(--ease-out);
-  min-height: 48px; /* Accessible touch target */
+  border: 1px solid rgba(199, 125, 255, 0.30);
+  box-shadow: var(--shadow-btn),
+              inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    transform var(--duration-base) var(--ease-luxury),
+    box-shadow var(--duration-base) var(--ease-luxury);
+  min-height: 48px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
 }
 
+/* Animated shine sweep */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s var(--ease-luxury);
+  pointer-events: none;
+}
+
+.btn-primary:hover::after { left: 130%; }
+
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(11, 21, 40, 0.3);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-btn-hover),
+              0 0 40px rgba(157, 78, 221, 0.30),
+              inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .btn-primary:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 2px 8px rgba(11, 21, 40, 0.2);
+  transform: translateY(-1px) scale(0.98);
 }
 
+/* WhatsApp */
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  background: #25D366;
+  background: linear-gradient(135deg, #1ead52 0%, #25D366 60%, #3de876 100%);
   color: #fff;
-  padding: 14px 28px;
+  padding: var(--space-4) var(--space-8);
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.9375rem;
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
-  transition: transform var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out);
+  border: 1px solid rgba(60, 216, 110, 0.30);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35),
+              inset 0 1px 0 rgba(255,255,255,0.22);
+  transition:
+    transform var(--duration-base) var(--ease-luxury),
+    box-shadow var(--duration-base) var(--ease-luxury);
   min-height: 48px;
   text-decoration: none;
 }
 
 .btn-whatsapp:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.45),
+              0 0 40px rgba(37, 211, 102, 0.15),
+              inset 0 1px 0 rgba(255,255,255,0.22);
 }
+.btn-whatsapp:active { transform: scale(0.98); }
 
-.btn-whatsapp:active {
-  transform: scale(0.98);
-}
-
+/* Outline — Glass on purple backgrounds */
 .btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  border: 1.5px solid var(--color-border);
-  color: var(--color-deep-navy);
-  padding: 13px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(199, 125, 255, 0.25);
+  color: var(--p-soft);
+  padding: var(--space-4) var(--space-8);
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9375rem;
-  background: var(--color-white);
-  transition: border-color var(--duration-base) var(--ease-out),
-              background var(--duration-base) var(--ease-out),
-              transform var(--duration-base) var(--ease-out);
+  box-shadow: var(--shadow-xs),
+              inset 0 1px 0 rgba(255,255,255,0.08);
+  transition:
+    background var(--duration-base) var(--ease-luxury),
+    border-color var(--duration-base) var(--ease-luxury),
+    color var(--duration-base) var(--ease-luxury),
+    transform var(--duration-base) var(--ease-luxury),
+    box-shadow var(--duration-base) var(--ease-luxury);
   min-height: 48px;
   text-decoration: none;
 }
 
 .btn-outline:hover {
-  border-color: var(--color-deep-navy);
-  background: var(--color-deep-navy);
-  color: var(--color-white);
+  background: rgba(199, 125, 255, 0.15);
+  border-color: rgba(199, 125, 255, 0.45);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md),
+              0 0 24px rgba(157, 78, 221, 0.15);
 }
+.btn-outline:active { transform: scale(0.98); }
 
-.btn-outline:active {
-  transform: scale(0.98);
-}
-
-/* ─── Focus styles (accessibility) ──────── */
+/* ─── Focus Styles ────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--color-rose-dark);
+  outline: 2px solid var(--p-accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* ─── Utility: hide scrollbar in swipe containers ── */
-.hide-scrollbar {
-  scrollbar-width: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+/* ─── Utility ─────────────────────────────── */
+.hide-scrollbar { scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
 
-/* ─── Section transition fade overlays ────── */
-/* Place ::before/::after on sections that need blended edges */
-.section-blend-top::before {
-  content: '';
+/* ─── Ambient Orb Utility ─────────────────── */
+.ambient-orb {
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 120px;
+  border-radius: 50%;
   pointer-events: none;
-  z-index: 2;
+  filter: blur(60px);
 }
 
-.section-blend-bottom::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
-  pointer-events: none;
-  z-index: 2;
+/* ─── Breathing Light Animation ───────────── */
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.08); }
 }
 
-/* ─── Depth enhancement utility ──────────── */
-/* Adds subtle inner glow / lighting to surface elements */
-.surface-depth {
-  background: var(--color-white);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.8),
-    var(--shadow-xs);
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-20px) scale(1.04); }
 }
 
-/* ─── Performance hint for animated cards ── */
-.will-animate {
-  will-change: transform, opacity;
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─── Prefers Reduced Motion ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -169,17 +169,17 @@ function SliderCard({ c }: { c: typeof cases[0] }) {
 
 export default function BeforeAfter() {
   return (
-    <section id="gallery" className="ba-section">
+    <section id="results" className="ba-section">
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-header"
+          className="section-header section-header--dark"
         >
-          <span className="section-badge">Real Results</span>
+          <span className="section-badge section-badge--dark">Real Results</span>
           <h2>Transformations</h2>
-          <p className="text-navy-muted">Drag the slider to reveal the Crown difference.</p>
+          <p>Drag the slider to reveal the Crown difference.</p>
         </motion.div>
 
         <div className="ba-scroll-container">

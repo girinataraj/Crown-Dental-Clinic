@@ -4,8 +4,6 @@ import './Navbar.css';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Treatments', href: '#treatments' },
-  { label: 'Gallery', href: '#gallery' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -22,6 +20,16 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   // Lock body scroll only when the mobile drawer is open
@@ -63,7 +71,7 @@ export default function Navbar() {
           >
             <CrownLogo />
             <span className="navbar-brand-text hide-mobile">
-              Crown Dental <span className="text-navy-muted" style={{ marginLeft: '0.2em' }}>& Cosmetology</span>
+              Crown Dental <span className="navbar-brand-sub">& Cosmetology</span>
             </span>
           </a>
 
@@ -84,7 +92,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="navbar-actions hide-mobile">
-            <a href="tel:+918946013270" className="btn-outline" style={{ padding: '8px 24px' }}>
+            <a href="tel:+919965310489" className="btn-outline navbar-call-btn">
               Call Now
             </a>
           </div>
@@ -94,6 +102,8 @@ export default function Navbar() {
             className={`navbar-hamburger hide-desktop ${mobileOpen ? 'open' : ''}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="navbar-drawer"
           >
             <span className="bar bar-top" />
             <span className="bar bar-mid" />
@@ -125,6 +135,7 @@ export default function Navbar() {
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="navbar-drawer hide-desktop glass-panel"
+            id="navbar-drawer"
           >
             <div className="drawer-header">
               <span className="drawer-brand">Menu</span>
@@ -155,10 +166,10 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <a href="tel:+918946013270" className="btn-primary" style={{ width: '100%', marginBottom: '16px' }}>
+              <a href="tel:+919965310489" className="btn-primary drawer-btn">
                 Call Clinic
               </a>
-              <a href="https://wa.me/918946013270" target="_blank" rel="noopener noreferrer" className="btn-whatsapp" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px', borderRadius: '999px', textDecoration: 'none', fontWeight: 500 }}>
+              <a href="https://wa.me/919965310489" target="_blank" rel="noopener noreferrer" className="btn-whatsapp drawer-btn">
                 WhatsApp Consult
               </a>
             </motion.div>
@@ -168,3 +179,4 @@ export default function Navbar() {
     </>
   );
 }
+

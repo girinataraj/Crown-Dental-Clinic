@@ -18,7 +18,7 @@ export default function DrMonnica() {
           >
             <div className="drmonnica-photo-frame">
               <img
-                src="/images/Doc image.jpeg"
+                src="/images/Doc.PNG"
                 alt="Dr. Monnica V — Managing & Clinical Director of Crown Dental & Cosmetology Clinic"
                 loading="lazy"
               />
@@ -146,7 +146,7 @@ export default function DrMonnica() {
               <p>
                 Mr. Kavin Kumar is the Managing Director of Crown Dental &amp; Cosmetology Clinic with over <strong>15 years of experience in dental hospital management</strong>.
               </p>
-              <p style={{ marginTop: '0.8rem' }}>
+              <p>
                 With a strong commitment to excellence, he has played a key role in building a patient-focused clinic that combines advanced dental technology with compassionate care. His vision is to provide affordable, ethical, and high-quality dental treatment while ensuring every patient enjoys a comfortable and positive experience.
               </p>
             </motion.div>

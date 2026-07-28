@@ -21,7 +21,7 @@ const images = [
 
 export default function ClinicGallery() {
   return (
-    <section className="gallery-section" aria-label="Clinic gallery">
+    <section id="gallery" className="gallery-section" aria-label="Clinic gallery">
       <div className="container">
 
         <motion.div

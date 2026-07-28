@@ -4,7 +4,7 @@ import './WhatsAppButton.css';
 export default function WhatsAppButton() {
   return (
     <motion.a
-      href="https://wa.me/918946013270"
+      href="https://wa.me/919965310489"
       target="_blank"
       rel="noopener noreferrer"
       className="whatsapp-float"

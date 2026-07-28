@@ -4,23 +4,23 @@ import './WhyChooseUs.css';
 const reasons = [
   {
     icon: '✦',
-    title: 'Specialist-Led Care',
-    desc: 'Board-certified MDS specialists across prosthodontics, orthodontics, oral surgery, and radiology.',
+    title: 'World-Class Expertise',
+    desc: 'Board-certified MDS specialists delivering precision, personalised care at every visit.',
   },
   {
     icon: '◈',
-    title: 'Premium Environment',
-    desc: 'A clinic designed to feel welcoming — where comfort and advanced care go hand in hand.',
+    title: 'Luxury Environment',
+    desc: 'A soothing, premium space that redefines what a clinic should feel like.',
   },
   {
     icon: '⬡',
     title: 'Hospital-Grade Safety',
-    desc: 'Rigorous sterilisation protocols and internationally certified infection control standards.',
+    desc: 'Rigorous sterilisation protocols — your safety is never a compromise.',
   },
   {
     icon: '◉',
-    title: 'Personalised Plans',
-    desc: 'Every treatment is planned around your specific goals, timeline, and comfort.',
+    title: 'Bespoke Treatment Plans',
+    desc: 'Every plan is designed uniquely for you, your goals, and your timeline.',
   },
 ];
 
@@ -42,12 +42,12 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.0, 0.0, 0.2, 1] }}
-          className="section-header"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="section-header section-header--light"
         >
           <span className="section-badge">The Crown Standard</span>
           <h2>Why Choose Us</h2>
-          <p className="text-navy-muted">Advanced dental science and genuine care — in one place.</p>
+          <p>Where advanced medical science meets genuine premium care.</p>
         </motion.div>
 
         <div className="why-grid">
@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
             >
               <div className="why-icon" aria-hidden="true">{r.icon}</div>
               <h3 className="why-title">{r.title}</h3>
-              <p className="why-desc text-navy-muted">{r.desc}</p>
+              <p className="why-desc">{r.desc}</p>
             </motion.div>
           ))}
         </div>

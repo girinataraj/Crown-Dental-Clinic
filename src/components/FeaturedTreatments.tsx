@@ -5,83 +5,100 @@ const treatments = [
   {
     id: 'aligners',
     title: 'Invisible Aligners',
-    desc: 'Clear orthodontic correction for a straighter smile — without traditional braces.',
+    desc: 'Clear, modern orthodontic correction for a perfectly straight smile — no brackets, no discomfort.',
     type: 'Dental',
-    icon: '✨'
+    icon: '◈',
   },
   {
     id: 'implants',
     title: 'Dental Implants',
-    desc: 'Permanent, natural-looking tooth replacements using precision implant technology.',
+    desc: 'Permanent, natural-looking replacements that feel and function exactly like real teeth.',
     type: 'Dental',
-    icon: '🦷'
+    icon: '✦',
   },
   {
     id: 'smile',
     title: 'Smile Makeover',
-    desc: 'Complete aesthetic transformation with veneers, crowns, and professional whitening.',
+    desc: 'Comprehensive aesthetic design using veneers, crowns, and whitening for a truly flawless look.',
     type: 'Dental',
-    icon: '💎'
+    icon: '◉',
   },
   {
     id: 'hydrafacial',
-    title: 'Medi-Facials',
-    desc: 'Clinically guided facial treatments that rejuvenate, hydrate, and brighten your skin.',
+    title: 'Hydra Facial',
+    desc: 'Premium clinical facial that deeply hydrates, brightens, and rejuvenates your skin in one session.',
     type: 'Cosmetology',
-    icon: '💧'
+    icon: '⬡',
   },
   {
     id: 'prp',
-    title: 'Hair PRP Therapy',
-    desc: 'Platelet-rich plasma treatments to promote natural hair density and scalp health.',
+    title: 'Hair PRP',
+    desc: 'Advanced platelet-rich plasma therapy restoring natural hair density and scalp health.',
     type: 'Cosmetology',
-    icon: '🌿'
+    icon: '◈',
   },
   {
     id: 'acne',
-    title: 'Skin & Laser Therapy',
-    desc: 'Advanced laser and medical treatments for acne scars, pigmentation, and skin renewal.',
+    title: 'Acne Scar Treatment',
+    desc: 'Expert medical therapy and laser resurfacing for complete skin rejuvenation and clarity.',
     type: 'Cosmetology',
-    icon: '⚡'
-  }
+    icon: '✦',
+  },
 ];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, delay: i * 0.08, ease: 'easeOut' as const },
+  }),
+};
 
 export default function FeaturedTreatments() {
   return (
-    <section id="treatments" className="treatments-section">
+    <section id="treatments" className="treatments-section" aria-label="Featured treatments">
       <div className="container">
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="section-header"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="section-header section-header--light"
         >
-          <span className="section-badge">Our Services</span>
-          <h2>Treatments We Offer</h2>
-          <p className="text-navy-muted">Comprehensive dental and aesthetic care, personalised for you.</p>
+          <span className="section-badge">Premium Services</span>
+          <h2>Featured Treatments</h2>
+          <p>World-class dental and aesthetic care, personalised for you.</p>
         </motion.div>
 
         <div className="treatments-stack">
           {treatments.map((t, i) => (
-            <motion.div 
+            <motion.div
               key={t.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="treatment-card glass-panel"
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              whileHover={{ y: -5, transition: { duration: 0.18 } }}
+              whileTap={{ scale: 0.98 }}
+              viewport={{ once: true, margin: '-40px' }}
+              className="treatment-card"
             >
               <div className="tc-header">
                 <span className="tc-icon" aria-hidden="true">{t.icon}</span>
                 <span className="tc-type">{t.type}</span>
               </div>
               <h3 className="tc-title">{t.title}</h3>
-              <p className="tc-desc text-navy-muted">{t.desc}</p>
-              
-              <a href="https://wa.me/918946013270" className="tc-link" target="_blank" rel="noopener noreferrer">
-                Enquire &rarr;
+              <p className="tc-desc">{t.desc}</p>
+              <a
+                href="https://wa.me/919965310489"
+                className="tc-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Inquire about ${t.title}`}
+              >
+                Inquire →
               </a>
             </motion.div>
           ))}

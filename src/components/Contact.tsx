@@ -13,10 +13,7 @@ const contactDetails = [
     icon: '📞',
     label: 'Phone',
     content: (
-      <>
-        <a href="tel:+918946013270">+91 89460 13270</a><br />
         <a href="tel:+919965310489">+91 99653 10489</a>
-      </>
     ),
   },
   {
@@ -43,13 +40,13 @@ export default function Contact() {
             className="contact-info"
           >
             <span className="section-badge">Find Us</span>
-            <h2>Visit The Clinic</h2>
+            <h2 className="grad-heading">Visit The Clinic</h2>
 
             <div className="contact-details">
               {contactDetails.map(({ icon, label, content }) => (
                 <div className="detail-item" key={label}>
                   <div className="detail-icon" aria-hidden="true">{icon}</div>
-                  <div>
+                  <div className="detail-content">
                     <span className="detail-label">{label}</span>
                     <p className="detail-text">{content}</p>
                   </div>
