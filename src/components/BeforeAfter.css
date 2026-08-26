@@ -26,6 +26,46 @@
   z-index: 1;
 }
 
+/* Category Filter Pills on Dark */
+.ba-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.ba-filter-pill {
+  min-height: 40px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-white-2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(199, 125, 255, 0.20);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-luxury);
+}
+
+.ba-filter-pill:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  border-color: var(--p-accent);
+}
+
+.ba-filter-pill.is-active {
+  background: linear-gradient(135deg, var(--p-bright) 0%, var(--p-accent) 100%);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(123, 44, 191, 0.4);
+}
+
 .ba-scroll-container {
   display: flex;
   flex-direction: column;
@@ -100,6 +140,9 @@
   background: linear-gradient(135deg, rgba(16, 0, 43, 0.40), rgba(36, 0, 70, 0.30));
   overflow: hidden;
   user-select: none;
+  /* Claim horizontal drag for the JS slider; leave vertical panning to
+     the browser so a diagonal touch still scrolls the page normally. */
+  touch-action: pan-y;
 }
 
 .ba-layer {
@@ -250,17 +293,41 @@
   color: var(--text-white-3);
   font-size: 0.875rem;
   line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
   margin: 0;
+}
+
+.ba-case-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-2) 0;
+  border-top: 1px solid rgba(199, 125, 255, 0.10);
+  border-bottom: 1px solid rgba(199, 125, 255, 0.10);
+  margin: var(--space-1) 0;
+}
+
+.ba-case-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.ba-case-label {
+  font-weight: 600;
+  color: var(--gold-soft);
+  flex-shrink: 0;
+}
+
+.ba-case-val {
+  color: var(--text-white-2);
 }
 
 .ba-highlights {
   list-style: none;
   padding: 0;
-  margin: var(--space-2) 0 0 0;
+  margin: var(--space-1) 0 0 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
@@ -279,3 +346,19 @@
   width: 14px;
   height: 14px;
 }
+
+/* Link to the full treatment page — added below highlights */
+.ba-learn-more {
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(199, 125, 255, 0.14);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--p-accent);
+  transition: color var(--duration-fast) ease, transform var(--duration-fast) ease;
+}
+
+.ba-learn-more:hover { color: #fff; transform: translateX(3px); }

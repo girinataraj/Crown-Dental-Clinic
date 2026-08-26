@@ -1,153 +1,340 @@
+/* ================================================================
+   The Crown Experience — visuals + feature chips + journey row
+   ================================================================ */
+
 .experience-section {
   background: var(--atm-mesh);
   position: relative;
   overflow: hidden;
+  padding: clamp(96px, 14vh, 150px) 0 var(--space-section);
 }
 
 .experience-section::before {
   content: '';
   position: absolute;
-  top: 80%;
-  left: 20%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(157,78,221,0.08) 0%, transparent 70%);
+  bottom: -10%;
+  left: 12%;
+  width: 52vw;
+  height: 52vw;
+  max-width: 640px;
+  max-height: 640px;
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.10) 0%, transparent 68%);
   border-radius: 50%;
-  animation: float 8s ease-in-out infinite;
+  animation: float 9s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-.experience-grid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-16);
-  position: relative;
-  z-index: 1;
+.experience-section .container { position: relative; z-index: 1; }
+
+/* Safe reading width for the fixed floating widget's corner.
+   ----------------------------------------------------------------
+   This section's heading, paragraphs, value blocks, CTA row and
+   journey cards run close to the container's right edge at every
+   viewport — .container caps at max-width 1200–1280px, so even at
+   1440px its own right edge is well within reach of the floating
+   widget, not just in the single-column mobile/tablet layouts.
+   Measured bounding boxes confirmed real overlap at 1024px AND
+   1440px before this was made unconditional. Applied to the two
+   content blocks directly (not the shared .container) so it can't
+   collide with .container's own responsive padding-inline rules. */
+.experience-content,
+.journey-row {
+  margin-right: 170px;
 }
 
-@media (min-width: 768px) {
-  .experience-grid {
-    flex-direction: row;
-    align-items: center;
+/* 170px was sized for the single-column layouts below 1024px, where
+   .experience-content spans the section's full width. Once the grid
+   goes two-column at 1024px, that column is already only ~420px wide
+   on its own — the same flat margin left just ~248px for the heading,
+   forcing a 6–7 line wrap. Measured clearance to the floating widget
+   at this tier needs far less: its left edge sits at ~891px in a
+   1024px viewport, well short of where the unmargined column would
+   have ended (~969px), so 110px (not 170px) is enough to clear it
+   with room to spare while giving the heading its width back. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .experience-content,
+  .journey-row {
+    margin-right: 110px;
   }
 }
 
-.experience-content {
-  flex: 1;
+/* .container itself caps at max-width 1280px and centres from here on,
+   so the further the viewport grows past that, the more genuinely
+   empty space already separates the container's right edge from the
+   widget — the flat 170px was true only at the narrowest single-column
+   widths and became pure unused whitespace at wide desktop sizes
+   (measured ~406px of margin doing nothing at 1920px). */
+@media (min-width: 1280px) and (max-width: 1599px) {
+  .experience-content,
+  .journey-row {
+    margin-right: 140px;
+  }
 }
 
+@media (min-width: 1600px) {
+  .experience-content,
+  .journey-row {
+    margin-right: 40px;
+  }
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+/* Grid items default to min-width:auto (their own min-content size).
+   Without resetting that to 0, the 1fr track refuses to shrink below
+   whatever's widest inside .experience-content (the CTA row, in this
+   case), so the column silently stopped shrinking below ~386px and
+   overflowed every viewport narrower than that — which is also why
+   the earlier text-width fix for the floating-widget overlap had no
+   effect below 430px: the box literally could not get any narrower. */
+.experience-visuals,
+.experience-content {
+  min-width: 0;
+}
+
+/* ─── Editorial Collage ───────────────────────────────────────────── */
+.experience-visuals {
+  position: relative;
+  width: 100%;
+}
+
+.exp-collage {
+  display: flex;
+  gap: var(--space-4);
+  position: relative;
+  height: 540px;
+}
+
+.exp-collage-left {
+  flex: 1.1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(199, 125, 255, 0.20);
+  box-shadow: var(--shadow-md);
+  height: 100%;
+}
+
+.exp-collage-right {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+}
+
+.exp-img-main,
+.exp-img-square,
+.exp-img-horiz {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.exp-collage-right > img {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(199, 125, 255, 0.20);
+  box-shadow: var(--shadow-md);
+}
+
+.exp-img-square { flex: 1; }
+.exp-img-horiz { flex: 0.8; }
+
+.exp-badge-overlap {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: var(--grad-brand);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-lift);
+  border: 6px solid #fff;
+  z-index: 10;
+}
+
+.exp-badge-text {
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Copy & Value Blocks ──────────────────────────────────────────────── */
+.experience-content { max-width: 620px; }
+
 .experience-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  background: var(--grad-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: clamp(1.8rem, 4.8vw, 2.7rem);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-4);
+  color: var(--text-heading);
+}
+
+.experience-story p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-body);
   margin-bottom: var(--space-6);
 }
 
-.experience-story {
+.value-blocks {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
 }
 
-.experience-story p {
-  font-size: 1rem;
-  line-height: 1.72;
-  color: var(--text-body);
-}
-
-.experience-stats {
+.value-block {
   display: flex;
-  gap: var(--space-6);
-  flex-wrap: wrap;
-  padding-top: var(--space-5);
-  border-top: 1px solid rgba(90,24,154,0.10);
+  align-items: flex-start;
+  gap: var(--space-4);
+  /* Same min-content trap as the grid fix above, in a flex context:
+     once .value-blocks goes flex-row (640px+), .value-block is a flex
+     item that defaults to min-width:auto and refuses to shrink below
+     "Comprehensive Solutions" ' natural width — which is exactly why
+     bumping the section's margin-right kept having no visible effect
+     at 1024px specifically (that's the width the row layout starts). */
+  min-width: 0;
 }
 
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.vb-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--grad-brand-light);
+  color: var(--p-violet);
+  border: 1px solid rgba(199, 125, 255, 0.25);
 }
 
-.stat-value {
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: var(--gold);
-  letter-spacing: -0.04em;
+.vb-icon svg { width: 20px; height: 20px; }
+
+.vb-content { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+.vb-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-heading);
 }
 
-.stat-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
+.vb-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, rgba(90,24,154,0.05), rgba(157,78,221,0.15), transparent);
-  align-self: center;
+.exp-cta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
 }
 
-.experience-visuals {
-  flex: 1;
+@media (min-width: 480px) {
+  .exp-cta-row { flex-direction: row; align-items: center; gap: var(--space-5); }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* Same pinch point as the value blocks above — the CTA row is
+     squeezed back into this section's narrowed column here, and a
+     row layout was forcing the phone number onto three broken lines. */
+  .exp-cta-row { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+}
+
+.exp-phone-contact {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
+
+/* ─── Journey row ───────────────────────────────────────── */
+.journey-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-16);
+  padding-top: var(--space-12);
+  border-top: 1px solid rgba(157, 78, 221, 0.16);
+}
+
+.journey-card {
   position: relative;
-  min-height: 320px;
-  width: 100%;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(199, 125, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), var(--shadow-xs);
+  transition: transform var(--duration-base) var(--ease-luxury),
+              box-shadow var(--duration-base) var(--ease-luxury);
+}
+
+.journey-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.journey-num {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: transparent;
+  background: var(--grad-brand-vivid);
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-3);
+}
+
+.journey-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 6px;
+}
+
+.journey-desc { font-size: 0.9rem; line-height: 1.65; color: var(--text-muted); }
+
+/* ─── Breakpoints ───────────────────────────────────────── */
+@media (min-width: 560px) {
+  .value-blocks { flex-direction: row; }
 }
 
 @media (min-width: 768px) {
-  .experience-visuals {
-    min-height: 420px;
+  .journey-row { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+}
+
+@media (min-width: 1024px) {
+  .experience-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-12);
   }
+
+  /* At exactly this tier .experience-content is already a half-width
+     grid column, further narrowed by the floating-widget safe-margin —
+     going 2-up here pinches each value block to single-word lines.
+     Stack them until 1280px, where the wider container gives the row
+     layout enough room again. */
+  .value-blocks { flex-direction: column; }
 }
 
-.exp-img-wrapper {
-  position: absolute;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid rgba(199,125,255,0.15);
-  box-shadow: var(--shadow-md);
-}
-
-.exp-img-wrapper::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: var(--glass-light-inner);
-  pointer-events: none;
-}
-
-.main-img {
-  width: 78%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.secondary-img {
-  width: 58%;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  border: 3px solid var(--p-soft);
-  box-shadow: var(--shadow-lift);
-}
-
-.exp-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-base) var(--ease-luxury);
-  display: block;
-}
-
-.exp-img-wrapper:hover .exp-img {
-  transform: scale(1.04);
+@media (min-width: 1280px) {
+  .value-blocks { flex-direction: row; }
 }

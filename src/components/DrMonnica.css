@@ -195,3 +195,60 @@
     width: 100%;
   }
 }
+
+/* ─── Doctors section header + rank/actions (added) ──────── */
+.doctors-header { margin-bottom: var(--space-16); }
+
+.drmonnica-section { padding-bottom: 0; }
+
+.doctor-rank {
+  display: inline-flex;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold-soft);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.26);
+  border-radius: var(--radius-full);
+  padding: 5px 13px;
+  margin-bottom: var(--space-3);
+}
+
+.drmonnica-name {
+  font-size: clamp(1.7rem, 4.4vw, 2.5rem);
+  letter-spacing: -0.03em;
+}
+
+.doctor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.doctor-direct { display: flex; flex-direction: column; line-height: 1.25; }
+
+.doctor-direct-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--text-white-3);
+}
+
+.doctor-direct-num {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--p-soft);
+}
+
+.drmonnica-bio strong { color: #fff; font-weight: 700; }
+
+@media (max-width: 767px) {
+  .doctor-actions .btn-primary { width: 100%; }
+  .doctor-actions { gap: var(--space-4); }
+}

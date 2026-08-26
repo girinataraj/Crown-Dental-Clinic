@@ -49,9 +49,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(199,125,255,0.20);
   border-radius: var(--radius-full);
   padding: 7px 16px;
@@ -76,8 +74,10 @@
 .reviews-scroll-container {
   display: flex;
   overflow: hidden;
+  /* No gap here — the animation offset must equal exactly one track width.
+     Inter-card spacing lives inside .reviews-track. */
+  gap: 0;
   padding: var(--space-4) 0;
-  margin: 0 calc(var(--space-container) * -1);
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -88,21 +88,22 @@
 
 .reviews-track {
   display: flex;
+  flex-shrink: 0;
   flex-wrap: nowrap;
   gap: var(--space-6);
   width: max-content;
   animation: scroll-loop 30s linear infinite;
-  padding: 0 var(--space-container);
 }
 
 .reviews-scroll-container:hover .reviews-track,
-.reviews-scroll-container:active .reviews-track {
+.reviews-scroll-container:active .reviews-track,
+.reviews-track.is-paused {
   animation-play-state: paused;
 }
 
 @keyframes scroll-loop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - (var(--space-6) / 2))); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 @media (pointer: coarse) {
@@ -154,6 +155,20 @@
   line-height: 1;
   user-select: none;
   pointer-events: none;
+}
+
+.review-tag-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
 }
 
 .review-text {

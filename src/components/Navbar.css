@@ -1,199 +1,331 @@
+/* ================================================================
+   Navbar — Premium floating navigation
+   ================================================================ */
+
 .navbar {
   position: fixed;
   top: 16px;
   left: 16px;
   right: 16px;
   width: auto;
-  max-width: 1160px;
+  max-width: 1320px;
   margin: 0 auto;
   z-index: 100;
-  border-radius: 32px !important;
-  background: rgba(45, 12, 80, 0.45) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border: 1px solid rgba(199, 125, 255, 0.25) !important;
-  box-shadow: 0 8px 32px rgba(16, 0, 43, 0.4) !important;
-  padding: 0 var(--space-4) !important;
-  transition: all 0.4s var(--ease-luxury);
-  animation: navFadeDown 0.8s var(--ease-luxury) forwards;
+  border-radius: 20px;
+  /* Clean light premium surface — integrates with the page
+     instead of floating as a dark block above it. */
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(60, 9, 108, 0.08);
+  box-shadow: 0 2px 16px rgba(36, 0, 70, 0.08),
+              0 1px 3px rgba(36, 0, 70, 0.04);
+  padding: 0 12px;
+  transition: background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: navFadeDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes navFadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .navbar--scrolled {
-  background: rgba(36, 0, 70, 0.85) !important;
-  backdrop-filter: blur(24px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
-  border-color: rgba(199, 125, 255, 0.35) !important;
-  box-shadow: 0 12px 40px rgba(16, 0, 43, 0.5) !important;
   top: 12px;
-}
-
-.navbar .container {
-  padding: 0 !important;
-  max-width: 100% !important;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  border-color: rgba(60, 9, 108, 0.10);
+  box-shadow: 0 4px 24px rgba(36, 0, 70, 0.10),
+              0 1px 4px rgba(36, 0, 70, 0.06);
 }
 
 .navbar-inner {
-  min-height: 56px;
-  display: grid;
-  grid-template-columns: 40px 1fr 40px;
+  min-height: 64px;
+  display: flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: space-between;
+  gap: var(--space-3);
+  transition: min-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.navbar-spacer {
-  width: 40px;
-  height: 40px;
+.navbar--scrolled .navbar-inner {
+  min-height: 56px;
 }
 
+/* ─── Brand ─────────────────────────────────────────────── */
 .navbar-brand {
-  justify-self: center;
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   text-decoration: none;
   min-width: 0;
+  flex: 1 1 0%;
+  flex-shrink: 0;
+}
+
+/* Light plate — the official logo.png mark + Logo-text.png wordmark,
+   used exactly as supplied (no redrawn typography). The wordmark PNG
+   has an opaque white background baked in, so both images share one
+   plate rather than sitting on the purple navbar directly — that
+   keeps the seam between "the plate" and "the wordmark's own white
+   background" invisible instead of showing as two mismatched boxes. */
+.navbar-logo-plate {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 12px 5px 5px;
+  border-radius: 13px;
+  background: #fff;
+  border: 1px solid rgba(199, 125, 255, 0.12);
+  box-shadow: none;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .navbar-logo-plate {
+  transform: scale(1.03);
 }
 
 .navbar-logo-img {
-  height: 38px;
+  height: 32px;
   width: auto;
-}
-
-.navbar-brand-text {
-  margin-left: var(--space-3);
-  font-family: var(--font-heading);
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 1.1;
-}
-
-.navbar-brand-sub {
+  object-fit: contain;
   display: block;
-  font-size: 0.75rem;
-  color: var(--text-white-3);
-  font-weight: 500;
+  flex-shrink: 0;
 }
 
+.navbar-logo-text-img {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  display: none;
+}
+
+
+/* ─── Desktop links ─────────────────────────────────────── */
+.navbar-links {
+  list-style: none;
+  display: none;
+  align-items: center;
+  gap: var(--space-5);
+  margin: 0 auto;
+  flex: 0 0 auto;
+}
+
+.navbar-links > li { position: relative; }
+
+.navbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--p-royal);
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 22px 0;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-chev {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.has-menu:hover .nav-chev { transform: rotate(180deg); }
+
+.navbar-link:hover { color: var(--p-violet); }
+.navbar-link.is-active { color: var(--gold); font-weight: 600; }
+
+.nav-underline {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ─── Dropdowns ─────────────────────────────────────────── */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 3, 40, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(199, 125, 255, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(16, 0, 43, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  z-index: 120;
+}
+
+.nav-mega {
+  width: min(600px, 70vw);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+.nav-simple {
+  width: 220px;
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-mega-col, .nav-simple-col { display: flex; flex-direction: column; gap: 4px; }
+
+.nav-mega-title {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-soft);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(199, 125, 255, 0.12);
+}
+
+.nav-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-dropdown-link:hover {
+  background: rgba(199, 125, 255, 0.1);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+.nav-dropdown-icon {
+  font-size: 0.9rem;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--gold-soft);
+}
+
+/* ─── Utility + CTA ─────────────────────────────────────── */
+.navbar-actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1 1 0%;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.navbar-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--p-deep);
+}
+
+.navbar-phone-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(90, 24, 154, 0.06);
+  border: 1px solid rgba(90, 24, 154, 0.12);
+  color: var(--p-violet);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.navbar-phone:hover .navbar-phone-icon {
+  background: rgba(90, 24, 154, 0.10);
+}
+
+.navbar-phone-icon svg { width: 14px; height: 14px; }
+
+.navbar-phone-text { display: flex; flex-direction: column; line-height: 1.2; }
+
+.navbar-phone-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.navbar-phone-num {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--p-violet);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.navbar-phone:hover .navbar-phone-num { color: var(--p-deep); }
+
+.navbar-cta {
+  min-height: 40px;
+  padding: 0 var(--space-5);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ─── Hamburger ─────────────────────────────────────────── */
 .navbar-hamburger {
-  width: 40px;
-  height: 40px;
-  justify-self: end;
+  width: 44px;
+  height: 44px;
   display: block;
   position: relative;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(199, 125, 255, 0.22);
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: transparent;
+  border: none;
   padding: 0;
-  box-sizing: border-box;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
 .bar {
   display: block;
-  width: 18px;
+  width: 22px;
   height: 2px;
-  background: #fff;
+  background: var(--p-royal);
   border-radius: 2px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  transition: transform var(--duration-fast) var(--ease-luxury), top var(--duration-fast) var(--ease-luxury), opacity var(--duration-fast) var(--ease-luxury), background var(--duration-fast) var(--ease-luxury);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              top 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.bar-top {
-  top: 11px;
-}
+.bar-top { top: 14px; }
+.bar-mid { top: 21px; }
+.bar-bot { top: 28px; }
 
-.bar-mid {
-  top: 19px;
-}
+.navbar-hamburger.open .bar-top { top: 21px; transform: translateX(-50%) rotate(45deg); }
+.navbar-hamburger.open .bar-mid { opacity: 0; }
+.navbar-hamburger.open .bar-bot { top: 21px; transform: translateX(-50%) rotate(-45deg); }
 
-.bar-bot {
-  top: 27px;
-}
-
-.navbar-hamburger.open .bar {
-  background: var(--p-accent);
-}
-
-.navbar-hamburger.open .bar-top {
-  top: 19px;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.navbar-hamburger.open .bar-mid {
-  opacity: 0;
-}
-
-.navbar-hamburger.open .bar-bot {
-  top: 19px;
-  transform: translateX(-50%) rotate(-45deg);
-}
-
-.navbar-links {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
-}
-
-.navbar-link {
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  padding: var(--space-2) 0;
-  position: relative;
-}
-
-.navbar-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--p-violet), var(--p-accent));
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform var(--duration-fast) var(--ease-luxury);
-}
-
-.navbar-link:hover {
-  color: var(--p-accent);
-}
-
-.navbar-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.navbar-actions {
-  display: none;
-}
-
-.navbar-call-btn {
-  min-height: 42px;
-  padding: 0 var(--space-6);
-}
-
+/* ─── Mobile drawer ─────────────────────────────────────── */
 .navbar-overlay {
   position: fixed;
   inset: 0;
   background: rgba(16, 0, 43, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 100;
 }
 
@@ -201,112 +333,170 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: min(84vw, 360px);
+  width: min(85vw, 360px);
   height: 100svh;
-  background: rgba(36, 0, 70, 0.94);
-  border-left: 1px solid rgba(199, 125, 255, 0.2);
-  padding: max(env(safe-area-inset-top), var(--space-20)) var(--space-5) var(--space-6);
+  background: rgba(20, 3, 40, 0.98);
+  border-left: 1px solid rgba(199, 125, 255, 0.15);
+  padding: max(env(safe-area-inset-top), var(--space-4)) var(--space-4)
+           max(env(safe-area-inset-bottom), var(--space-4));
   z-index: 101;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
 }
 
 .drawer-header {
-  margin-bottom: var(--space-3);
-}
-
-.drawer-brand {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--p-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.drawer-links {
-  list-style: none;
   display: flex;
-  flex-direction: column;
-  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
+  border-bottom: 1px solid rgba(199, 125, 255, 0.1);
+  flex-shrink: 0;
 }
+
+/* The drawer is a full-width panel, so the wordmark always has room —
+   show it here even below the 480px breakpoint that hides it in the
+   compact top bar. */
+.drawer-logo-plate { padding: 6px 14px 6px 6px; }
+.drawer-logo-plate .navbar-logo-img { height: 34px; }
+.drawer-logo-plate .navbar-logo-text-img { display: block; height: 25px; }
+
+.drawer-close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.drawer-close-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--gold); }
+
+.drawer-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.drawer-scroll::-webkit-scrollbar { display: none; }
+
+.drawer-links { list-style: none; display: flex; flex-direction: column; margin: 0; }
 
 .drawer-link {
+  width: 100%;
+  font-family: var(--font-body);
   font-size: 1.05rem;
   font-weight: 500;
-  color: #fff;
-  display: block;
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid rgba(199, 125, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  text-align: left;
+  transition: color 0.2s, background 0.2s;
+  background: transparent;
+  cursor: pointer;
 }
 
-.drawer-link:hover {
-  color: var(--p-accent);
+.drawer-link:hover,
+.drawer-link.is-active {
+  color: var(--gold);
+  background: rgba(255, 255, 255, 0.03);
 }
+
+.drawer-toggle .nav-chev { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.drawer-toggle.is-open { color: var(--gold); }
+.drawer-toggle.is-open .nav-chev { transform: rotate(180deg); }
+
+.drawer-sub { overflow: hidden; display: flex; flex-direction: column; }
+
+.drawer-sub-link {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 12px 16px;
+  margin-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transition: color 0.2s;
+}
+
+.drawer-sub-link:hover { color: #fff; border-left-color: var(--gold); }
 
 .drawer-footer {
   margin-top: auto;
+  padding-top: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  flex-shrink: 0;
 }
 
-.drawer-btn {
-  width: 100%;
+.drawer-btn { 
+  width: 100%; 
+  min-height: 48px; 
+  font-size: 0.95rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.hide-desktop {
-  display: block;
+.drawer-btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  background: transparent;
 }
 
-.hide-mobile {
-  display: none;
+.drawer-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Breakpoints ───────────────────────────────────────── */
+/* Wordmark image joins the mark once there's room for it beside the
+   nav links; hidden below that and again in the 1024–1179px squeeze
+   where the links themselves are tightest — mirrors the old text
+   treatment's tiering exactly, just swapped onto the image. */
+@media (min-width: 480px) {
+  .navbar-logo-text-img { display: block; }
 }
 
 @media (min-width: 768px) {
-  .navbar {
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    padding: 0 var(--space-6) !important;
-  }
+  .navbar { top: 20px; left: 20px; right: 20px; padding: 0 var(--space-4); border-radius: 24px; }
+  .navbar-inner { min-height: 70px; }
+  .navbar-logo-plate { padding: 6px 14px 6px 6px; gap: 10px; }
+  .navbar-logo-img { height: 36px; }
+  .navbar-logo-text-img { height: 27px; }
 }
 
 @media (min-width: 1024px) {
-  .navbar {
-    top: 24px;
-    padding: 0 var(--space-8) !important;
-  }
+  .navbar { top: 24px; padding: 0 var(--space-5) 0 var(--space-4); }
+  .navbar--scrolled { top: 16px; }
+  .navbar-links { display: flex; }
+  .navbar-actions { display: flex; }
+  .navbar-hamburger { display: none; }
+}
 
-  .navbar--scrolled {
-    top: 16px;
-  }
+@media (min-width: 1024px) and (max-width: 1179px) {
+  .navbar-links { gap: var(--space-3); }
+  .navbar-link { font-size: 0.85rem; padding: 22px 0; }
+  .navbar-logo-text-img { display: none; }
+  .navbar-phone-text { display: none; }
+}
 
-  .navbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 64px;
-  }
-
-  .navbar-brand {
-    justify-self: auto;
-  }
-
-  .navbar-links {
-    margin-left: auto;
-    margin-right: var(--space-8);
-  }
-
-  .navbar-actions {
-    display: flex;
-    align-items: center;
-  }
-
-  .hide-desktop {
-    display: none;
-  }
-
-  .hide-mobile {
-    display: flex;
-  }
+@media (min-width: 1280px) {
+  .navbar-links { gap: var(--space-5); }
+  .navbar-link { font-size: 0.95rem; }
 }

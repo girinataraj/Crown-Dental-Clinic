@@ -1,4 +1,6 @@
-/* WhyChooseUs.css */
+/* ================================================================
+   Why Choose Crown — editorial split with large image + help card
+   ================================================================ */
 
 .why-section {
   background: var(--atm-purple-glass);
@@ -8,95 +10,193 @@
 }
 
 .why-section::before {
-  content: "";
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translate(-30%, 30%);
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(199, 125, 255, 0.08) 0%, transparent 60%);
+  bottom: -20%;
+  left: -16%;
+  width: 58vw;
+  height: 58vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(circle, rgba(199, 125, 255, 0.12) 0%, transparent 62%);
   border-radius: 50%;
-  animation: breathe 7s ease-in-out infinite alternate;
+  animation: breathe 8s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
 }
 
-.why-section .container {
-  position: relative;
-  z-index: 1;
+/* Subtle dot field, echoing the reference's halftone corner */
+.why-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 260px;
+  background-image: radial-gradient(rgba(90, 24, 154, 0.16) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 72%);
+  mask-image: linear-gradient(135deg, #000 0%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
 }
+
+.why-section .container { position: relative; z-index: 1; }
 
 .why-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
-  align-items: stretch;
-}
-
-@media (min-width: 640px) {
-  .why-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .why-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.why-card {
-  background: rgba(255, 255, 255, 0.50);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(199, 125, 255, 0.15);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-light-inner), var(--shadow-xs);
-  padding: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  cursor: default;
-  transition: transform var(--duration-base) var(--ease-luxury),
-              box-shadow var(--duration-base) var(--ease-luxury);
-  height: 100%;
-}
-
-.why-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glass-light-inner), var(--shadow-soft), var(--shadow-glow-sm);
-}
-
-.why-icon {
-  width: 46px;
-  height: 46px;
-  background: linear-gradient(135deg, rgba(90, 24, 154, 0.10), rgba(157, 78, 221, 0.06));
-  border: 1px solid rgba(199, 125, 255, 0.15);
-  border-radius: var(--radius-md);
-  color: var(--p-violet);
-  display: flex;
+  gap: var(--space-12);
   align-items: center;
-  justify-content: center;
 }
 
-.why-icon svg {
-  width: 24px;
-  height: 24px;
-}
+/* ─── Copy ──────────────────────────────────────────────── */
+.why-content { max-width: 640px; }
 
 .why-title {
-  color: var(--text-heading);
-  font-family: var(--font-heading);
-  font-size: 1.125rem;
-  font-weight: 700;
-  margin: 0;
+  font-size: clamp(1.85rem, 5vw, 2.7rem);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-4);
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.why-desc {
-  color: var(--text-body);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  margin: 0;
-  flex-grow: 1;
+.why-intro {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+  max-width: 540px;
+}
+
+.why-list { display: flex; flex-direction: column; gap: var(--space-5); }
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(157, 78, 221, 0.14);
+}
+
+.why-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.why-num {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(90, 24, 154, 0.14), rgba(157, 78, 221, 0.07));
+  border: 1px solid rgba(199, 125, 255, 0.26);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--p-violet);
+  letter-spacing: -0.02em;
+}
+
+.why-item-body { min-width: 0; }
+
+.why-item-title {
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 5px;
+}
+
+.why-item-desc { font-size: 0.9rem; line-height: 1.68; color: var(--text-muted); }
+
+/* ─── Visual ────────────────────────────────────────────── */
+.why-visual { position: relative; width: 100%; padding-bottom: var(--space-10); }
+
+.why-image-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(199, 125, 255, 0.24);
+  box-shadow: var(--shadow-lift), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.why-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-luxury);
+}
+
+.why-image-frame:hover img { transform: scale(1.04); }
+
+.why-help-card {
+  position: absolute;
+  /* Anchored bottom-LEFT — the fixed WhatsApp/Call widget always sits
+     bottom-right, so this avoids colliding with it while that section
+     is in view. */
+  left: var(--space-4);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--p-royal) 0%, var(--p-violet) 60%, var(--p-bright) 100%);
+  border: 1px solid rgba(224, 170, 255, 0.35);
+  box-shadow: 0 18px 44px rgba(36, 0, 70, 0.42),
+              inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  z-index: 3;
+  transition: transform var(--duration-base) var(--ease-luxury),
+              box-shadow var(--duration-base) var(--ease-luxury);
+}
+
+.why-help-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 52px rgba(36, 0, 70, 0.5), 0 0 32px rgba(157, 78, 221, 0.28);
+}
+
+.why-help-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+
+.why-help-icon svg { width: 18px; height: 18px; }
+
+.why-help-text { display: flex; flex-direction: column; line-height: 1.25; }
+
+.why-help-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--ps-lilac);
+}
+
+.why-help-num {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ─── Breakpoints ───────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .why-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: var(--space-16);
+  }
+  .why-image-frame { aspect-ratio: 3 / 4; }
 }

@@ -1,120 +1,144 @@
-/* SpecialistTeam.css */
+/* ================================================================
+   Consulting specialists — continues the dark Doctors block
+   ================================================================ */
 
 .specialists-section {
-  background: var(--atm-soft-lavender);
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(199, 125, 255, 0.14) 0%, transparent 55%),
+    linear-gradient(160deg, var(--p-violet) 0%, var(--p-royal) 45%, var(--p-deep) 100%);
   position: relative;
   overflow: hidden;
-  padding: var(--space-section) 0;
+  padding: var(--space-16) 0 var(--space-section);
+  color: #fff;
 }
 
 .specialists-section::before {
-  content: "";
+  content: '';
   position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(30%, -50%);
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(199, 125, 255, 0.10) 0%, transparent 60%);
+  bottom: -18%;
+  left: -12%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 640px;
+  max-height: 640px;
+  background: radial-gradient(circle, rgba(255, 203, 242, 0.10) 0%, transparent 62%);
   border-radius: 50%;
+  animation: breathe 9s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-.specialists-section .container {
-  position: relative;
-  z-index: 1;
-}
+.specialists-section .container { position: relative; z-index: 1; }
 
 .specialists-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
-  align-items: stretch;
-}
-
-@media (min-width: 768px) {
-  .specialists-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-4);
-  }
+  gap: var(--space-5);
 }
 
 .specialist-card {
-  background: rgba(255, 255, 255, 0.50);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(199, 125, 255, 0.15);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-light-inner), var(--shadow-soft);
-  padding: var(--space-8);
   display: flex;
-  align-items: center;
-  gap: var(--space-6);
-  min-height: 120px;
+  flex-direction: column;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(199, 125, 255, 0.18);
+  box-shadow: var(--glass-dark-inner), var(--shadow-soft);
   height: 100%;
-  width: 100%;
   transition: transform var(--duration-base) var(--ease-luxury),
-              box-shadow var(--duration-base) var(--ease-luxury),
-              border-color var(--duration-base) var(--ease-luxury);
-  text-decoration: none;
+              border-color var(--duration-base) var(--ease-luxury),
+              box-shadow var(--duration-base) var(--ease-luxury);
 }
 
 .specialist-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(199, 125, 255, 0.3);
-  box-shadow: var(--glass-light-inner), var(--shadow-md), var(--shadow-glow-sm);
+  transform: translateY(-5px);
+  border-color: rgba(199, 125, 255, 0.38);
+  box-shadow: var(--shadow-md), 0 0 30px rgba(157, 78, 221, 0.18);
 }
 
-.specialist-avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--grad-brand);
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ffffff;
-  box-shadow: var(--shadow-soft);
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.specialist-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.specialist-info {
+/* Typographic header — no photo, no initial-circle placeholder.
+   A numbered index (matching the site's existing "01 / 02 …" motif)
+   plus name + credentials pill gives the card a designed anchor
+   point instead of a missing-avatar silhouette. */
+.specialist-card-top {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(199, 125, 255, 0.14);
+}
+
+.specialist-index {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--gold-soft);
+  opacity: 0.85;
+}
+
+.specialist-name-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 9px;
 }
 
 .specialist-name {
-  color: var(--text-heading);
   font-family: var(--font-heading);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
-.specialist-creds {
-  color: var(--p-violet);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin: 0;
+.specialist-creds-pill {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  color: var(--p-void);
+  background: var(--gold-soft);
+  border-radius: var(--radius-full);
+  padding: 3px 9px;
+  white-space: nowrap;
 }
 
 .specialist-role {
-  color: var(--text-muted);
-  font-size: 0.8125rem;
-  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--p-accent);
+  line-height: 1.35;
 }
 
+.specialist-scope {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-white-2);
+  flex: 1;
+  margin-bottom: var(--space-5);
+}
+
+.specialist-areas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+
+.specialist-area {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--p-soft);
+  background: rgba(199, 125, 255, 0.12);
+  border: 1px solid rgba(199, 125, 255, 0.20);
+  border-radius: var(--radius-full);
+  padding: 4px 11px;
+}
+
+@media (min-width: 560px) {
+  .specialists-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1180px) {
+  .specialists-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+}

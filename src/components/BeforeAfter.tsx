@@ -1,5 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { IMAGES } from '../data/clinic';
+import { treatmentHref } from '../hooks/useRoute';
+import TreatmentIcon, { type TreatmentIconName } from './icons/TreatmentIcon';
 import './BeforeAfter.css';
 
 const cases = [
@@ -8,24 +11,37 @@ const cases = [
     category: 'Cosmetic Dentistry',
     label: 'Smile Makeover',
     description: 'Restore confidence with a complete smile transformation through cosmetic dentistry, creating a naturally beautiful, balanced, and brighter smile.',
-    beforeImage: '/images/Smile-Before.png',
-    afterImage: '/images/Smile-After.png',
-    icon: '✨',
-    highlights: ['Improved smile aesthetics', 'Natural tooth colour', 'Better symmetry', 'Increased confidence']
+    beforeImage: IMAGES.smileBefore,
+    afterImage: IMAGES.smileAfter,
+    icon: 'sparkle-smile' as TreatmentIconName,
+    caseFocus: 'Aesthetic correction of tooth wear, shade irregularity, and anterior smile symmetry.',
+    approach: 'Custom cosmetic smile design utilizing porcelain restorations and aesthetic contouring.',
+    outcome: 'Naturally balanced tooth shade, enhanced facial harmony, and restored smile confidence.',
+    highlights: ['Improved smile aesthetics', 'Natural tooth colour', 'Better symmetry', 'Increased confidence'],
+    treatmentId: 'smile-makeover',
   },
   {
     id: 'align1',
     category: 'Orthodontics',
     label: 'Invisalign® Smile Correction',
     description: 'Experience discreet orthodontic treatment with Invisalign to gently align teeth and create a healthier, more confident smile.',
-    beforeImage: '/images/Invisalign-Before.png',
-    afterImage: '/images/Invisalign-After.png',
-    icon: '💎',
-    highlights: ['Clear aligner treatment', 'Improved alignment', 'Better bite', 'Comfortable orthodontic solution']
+    beforeImage: IMAGES.alignerBefore,
+    afterImage: IMAGES.alignerAfter,
+    icon: 'aligner-tray' as TreatmentIconName,
+    caseFocus: 'Orthodontic correction of dental spacing and mild-to-moderate alignment irregularities.',
+    approach: 'Progressive series of custom clear transparent aligners worn daily without metal brackets.',
+    outcome: 'Harmonious dental arch alignment, improved bite comfort, and discreet treatment experience.',
+    highlights: ['Clear aligner treatment', 'Improved alignment', 'Better bite', 'Comfortable orthodontic solution'],
+    treatmentId: 'invisible-aligners',
   }
 ];
 
-function SliderCard({ c }: { c: typeof cases[0] }) {
+interface SliderCardProps {
+  c: typeof cases[0];
+  navigate: (to: string) => void;
+}
+
+function SliderCard({ c, navigate }: SliderCardProps) {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInteracted, setIsInteracted] = useState(false);
@@ -147,10 +163,26 @@ function SliderCard({ c }: { c: typeof cases[0] }) {
       
       <div className="ba-footer">
         <div className="ba-footer-header">
-          <span className="ba-icon">{c.icon}</span>
+          <span className="ba-icon" aria-hidden="true"><TreatmentIcon name={c.icon} /></span>
           <h3 className="ba-title">{c.label}</h3>
         </div>
         <p className="ba-description">{c.description}</p>
+
+        {/* Structured Case Details */}
+        <div className="ba-case-summary">
+          <div className="ba-case-item">
+            <span className="ba-case-label">Focus:</span>
+            <span className="ba-case-val">{c.caseFocus}</span>
+          </div>
+          <div className="ba-case-item">
+            <span className="ba-case-label">Approach:</span>
+            <span className="ba-case-val">{c.approach}</span>
+          </div>
+          <div className="ba-case-item">
+            <span className="ba-case-label">Outcome:</span>
+            <span className="ba-case-val">{c.outcome}</span>
+          </div>
+        </div>
         
         <ul className="ba-highlights">
           {c.highlights.map((h, i) => (
@@ -162,40 +194,77 @@ function SliderCard({ c }: { c: typeof cases[0] }) {
             </li>
           ))}
         </ul>
+
+        <a
+          href={treatmentHref(c.treatmentId)}
+          className="ba-learn-more"
+          onClick={(e) => { e.preventDefault(); navigate(treatmentHref(c.treatmentId)); }}
+        >
+          Read the full treatment page &rarr;
+        </a>
       </div>
     </div>
   );
 }
 
-export default function BeforeAfter() {
+interface BeforeAfterProps {
+  navigate: (to: string) => void;
+}
+
+export default function BeforeAfter({ navigate }: BeforeAfterProps) {
+  const [activeTab, setActiveTab] = useState<'All' | 'Cosmetic Dentistry' | 'Orthodontics'>('All');
+
+  const filteredCases = cases.filter(c => {
+    if (activeTab === 'All') return true;
+    return c.category === activeTab;
+  });
+
   return (
-    <section id="results" className="ba-section">
+    <section id="results" className="ba-section" aria-label="Treatment results and transformations">
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-header section-header--dark"
+          className="section-header center section-header--dark"
         >
           <span className="section-badge section-badge--dark">Real Results</span>
           <h2>Transformations</h2>
           <p>Drag the slider to reveal the Crown difference.</p>
+
+          {/* Category Filter Pills */}
+          <div className="ba-filters" role="tablist" aria-label="Filter results by category">
+            {(['All', 'Cosmetic Dentistry', 'Orthodontics'] as const).map((tab) => (
+              <button
+                key={tab}
+                role="tab"
+                aria-selected={activeTab === tab}
+                className={`ba-filter-pill ${activeTab === tab ? 'is-active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab === 'All' ? 'All Transformations' : tab === 'Cosmetic Dentistry' ? 'Smile Makeovers' : 'Invisalign Aligners'}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        <div className="ba-scroll-container">
-          {cases.map((c, i) => (
-            <motion.div 
-              key={c.id}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              className="ba-card-wrapper"
-            >
-              <SliderCard c={c} />
-            </motion.div>
-          ))}
-        </div>
+        <motion.div layout className="ba-scroll-container">
+          <AnimatePresence mode="popLayout">
+            {filteredCases.map((c, i) => (
+              <motion.div 
+                key={c.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.35, delay: i * 0.1 }}
+                className="ba-card-wrapper"
+              >
+                <SliderCard c={c} navigate={navigate} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

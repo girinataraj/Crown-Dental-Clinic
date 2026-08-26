@@ -1,27 +1,58 @@
 import { motion } from 'framer-motion';
+import { CLINIC } from '../data/clinic';
 import './Contact.css';
+
+const PinIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 6-10 7L2 6" />
+  </svg>
+);
+
+const ClockIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 6v6l4 2" />
+  </svg>
+);
 
 const contactDetails = [
   {
-    icon: '📍',
-    label: 'Location',
-    content: (
-      <>19-A Square Building, Vasuki 5th Street,<br />Senguthar School Back Side, Erode – 638001</>
-    ),
+    Icon: PinIcon,
+    label: 'Clinic Address',
+    content: <>{CLINIC.addressLine1},<br />{CLINIC.addressLine2}</>,
   },
   {
-    icon: '📞',
-    label: 'Phone',
-    content: (
-        <a href="tel:+919965310489">+91 99653 10489</a>
-    ),
+    Icon: PhoneIcon,
+    label: 'General Inquiries & Appointments',
+    content: <a href={CLINIC.phoneHref}>{CLINIC.phoneDisplay}</a>,
   },
   {
-    icon: '✉',
+    Icon: MailIcon,
     label: 'Email',
-    content: (
-      <a href="mailto:crowndentalcosmetology@gmail.com">crowndentalcosmetology@gmail.com</a>
-    ),
+    content: <a href={CLINIC.emailHref}>{CLINIC.email}</a>,
+  },
+  {
+    Icon: ClockIcon,
+    label: 'Consultation Availability',
+    content: 'Please contact the clinic directly via call or WhatsApp for consultation schedule and availability.',
   },
 ];
 
@@ -29,23 +60,32 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section" aria-label="Contact information">
       <div className="container">
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="section-header center section-header--light"
+        >
+          <span className="section-badge section-badge--light">Find Us</span>
+          <h2>Visit the Clinic</h2>
+          <p>We welcome you to our clinic in Erode. Reach out directly via call or WhatsApp for consultations and enquiries.</p>
+        </motion.div>
+
         <div className="contact-grid">
 
-          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.0, 0.0, 0.2, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="contact-info"
           >
-            <span className="section-badge">Find Us</span>
-            <h2 className="grad-heading">Visit The Clinic</h2>
-
             <div className="contact-details">
-              {contactDetails.map(({ icon, label, content }) => (
+              {contactDetails.map(({ Icon, label, content }) => (
                 <div className="detail-item" key={label}>
-                  <div className="detail-icon" aria-hidden="true">{icon}</div>
+                  <div className="detail-icon" aria-hidden="true"><Icon /></div>
                   <div className="detail-content">
                     <span className="detail-label">{label}</span>
                     <p className="detail-text">{content}</p>
@@ -53,26 +93,35 @@ export default function Contact() {
                 </div>
               ))}
             </div>
+
+            <div className="contact-actions">
+              <a href={CLINIC.phoneHref} className="btn-primary contact-btn">Call Clinic Now</a>
+              <a href={CLINIC.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-whatsapp contact-btn">
+                WhatsApp Consult
+              </a>
+              <a href={CLINIC.mapsDirections} target="_blank" rel="noopener noreferrer" className="btn-outline-light contact-btn">
+                Get Directions
+              </a>
+            </div>
           </motion.div>
 
-          {/* Map */}
           <motion.div
             initial={{ opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.0, 0.0, 0.2, 1] }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="contact-map"
           >
             <iframe
               className="map-iframe"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.5!2d77.7167293!3d11.3417735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f3a254c9e41%3A0xbd721908e7886f4f!2sCrown%20Dental%20%26%20Cosmetology%20Clinic%20%7C%20Dental%20Clinic%20in%20Erode%20%7C%20Orthodontist%20%7C%20Invisalign%20Provider%20%7C%20Dental%20Implant%20Center!5e0!3m2!1sen!2sin!4v1690000000000"
+              src={CLINIC.mapsEmbed}
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Crown Dental & Cosmetology Clinic Location"
+              title="Crown Dental & Cosmetology Clinic location"
             />
           </motion.div>
 

@@ -1,3 +1,7 @@
+/* ================================================================
+   Contact — info column + map, mobile-safe height
+   ================================================================ */
+
 .contact-section {
   background: var(--atm-mesh);
   position: relative;
@@ -11,17 +15,17 @@
   left: 80%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, rgba(224,170,255,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(224, 170, 255, 0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
+
+.contact-section .container { position: relative; z-index: 1; }
 
 .contact-grid {
   display: flex;
   flex-direction: column;
   gap: var(--space-10);
-  position: relative;
-  z-index: 1;
 }
 
 @media (min-width: 768px) {
@@ -36,23 +40,64 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.contact-info h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  background: var(--grad-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: var(--space-8);
-  letter-spacing: -0.02em;
+  min-width: 0;
 }
 
 .contact-details {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
 }
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: auto;
+}
+
+.contact-btn {
+  flex: 1 1 160px;
+  text-align: center;
+  justify-content: center;
+}
+
+/* .btn-outline is designed for dark purple backgrounds; this section
+   is light lavender, so "Get Directions" needs its own legible variant
+   rather than the near-invisible pale-on-pale combination. */
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(123, 44, 191, 0.35);
+  color: var(--p-royal);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  min-height: 48px;
+  box-shadow: var(--shadow-xs), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: background var(--duration-base) var(--ease-luxury),
+              border-color var(--duration-base) var(--ease-luxury),
+              color var(--duration-base) var(--ease-luxury),
+              transform var(--duration-base) var(--ease-luxury);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--p-bright);
+  color: var(--p-bright);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline-light:active { transform: scale(0.98); }
 
 .detail-item {
   display: flex;
@@ -65,8 +110,8 @@
   height: 46px;
   flex-shrink: 0;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(90,24,154,0.08), rgba(157,78,221,0.05));
-  border: 1px solid rgba(199,125,255,0.15);
+  background: linear-gradient(135deg, rgba(90, 24, 154, 0.08), rgba(157, 78, 221, 0.05));
+  border: 1px solid rgba(199, 125, 255, 0.15);
   box-shadow: var(--glass-light-inner);
   color: var(--p-violet);
   display: flex;
@@ -74,10 +119,7 @@
   justify-content: center;
 }
 
-.detail-icon svg {
-  width: 20px;
-  height: 20px;
-}
+.detail-icon svg { width: 19px; height: 19px; }
 
 .detail-content {
   display: flex;
@@ -100,48 +142,48 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   word-break: break-word;
 }
 
 .detail-text a {
   color: var(--p-bright);
   text-decoration: none;
-  border-bottom: 1px solid rgba(123,44,191,0.25);
+  border-bottom: 1px solid rgba(123, 44, 191, 0.25);
   padding-bottom: 2px;
+  overflow-wrap: anywhere;
   transition: all var(--duration-fast) ease;
 }
 
-.detail-text a:hover {
-  color: var(--p-violet);
-  border-color: var(--p-violet);
-}
+.detail-text a:hover { color: var(--p-violet); border-color: var(--p-violet); }
 
+/* ─── Map ───────────────────────────────────────────────── */
 .contact-map {
   flex: 1;
   display: block;
   position: relative;
   width: 100%;
-  min-height: 320px;
+  /* Explicit, unit-based height so flex/grid ancestors can never
+     collapse this to 0 or an intrinsic-content minimum. */
+  height: clamp(280px, 62vw, 320px);
+  min-height: 280px;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(199,125,255,0.15);
+  border: 1px solid rgba(199, 125, 255, 0.15);
   box-shadow: var(--shadow-soft), var(--glass-light-inner);
   overflow: hidden;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 @media (min-width: 768px) {
-  .contact-map {
-    min-height: 420px;
-  }
+  .contact-map { height: auto; min-height: 420px; }
 }
 
 .contact-map iframe,
 .map-iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  display: block;
 }

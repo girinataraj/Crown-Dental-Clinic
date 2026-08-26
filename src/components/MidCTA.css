@@ -1,0 +1,121 @@
+/* ================================================================
+   Mid-page CTA band + stats strip
+   ================================================================ */
+
+.midcta-section {
+  position: relative;
+  overflow: visible;
+  padding: clamp(72px, 11vh, 116px) 0 0;
+  isolation: isolate;
+}
+
+.midcta-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.midcta-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+}
+
+.midcta-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 70% at 25% 25%, rgba(123, 44, 191, 0.58) 0%, transparent 62%),
+    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(199, 125, 255, 0.28) 0%, transparent 55%),
+    linear-gradient(160deg, rgba(16, 0, 43, 0.94) 0%, rgba(36, 0, 70, 0.90) 50%, rgba(60, 9, 108, 0.92) 100%);
+  pointer-events: none;
+}
+
+.midcta-inner { text-align: center; }
+
+.midcta-content { max-width: 700px; margin-inline: auto; }
+
+.midcta-title {
+  font-size: clamp(1.8rem, 5.4vw, 2.9rem);
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  margin-bottom: var(--space-4);
+}
+
+.midcta-text {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--text-white-2);
+  margin-bottom: var(--space-8);
+}
+
+.midcta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.midcta-actions > * { flex: 1 1 auto; min-width: 210px; max-width: 320px; }
+
+/* ─── Stats strip — lifted over the next section ─────────── */
+.midcta-stats-wrap { position: relative; z-index: 2; }
+
+.midcta-stats {
+  margin-top: clamp(48px, 7vh, 76px);
+  margin-bottom: clamp(-72px, -7vw, -40px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--p-violet) 0%, var(--p-bright) 55%, var(--p-lavender) 100%);
+  border: 1px solid rgba(224, 170, 255, 0.35);
+  box-shadow: 0 26px 60px rgba(36, 0, 70, 0.45),
+              inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.midcta-stat {
+  text-align: center;
+  padding: var(--space-3) var(--space-2);
+  position: relative;
+}
+
+.midcta-stat-value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 6vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.midcta-stat-unit { color: var(--gold-soft); margin-left: 2px; }
+
+.midcta-stat-label {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+@media (min-width: 768px) {
+  .midcta-stats { grid-template-columns: repeat(4, 1fr); padding: var(--space-8) var(--space-6); }
+
+  .midcta-stat + .midcta-stat::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18%;
+    height: 64%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.28), transparent);
+  }
+}
