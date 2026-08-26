@@ -1,5 +1,5 @@
 /* ================================================================
-   Hero — editorial split: copy + clinic visual + consultation card
+   Hero — editorial split: copy/actions (left) + clinic visual & form (right)
    ================================================================ */
 
 .hero-section {
@@ -8,7 +8,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: clamp(104px, 15vh, 168px) 0 clamp(72px, 10vh, 112px);
+  padding: clamp(120px, 15vh, 168px) 0 clamp(56px, 8vh, 88px);
   z-index: 1;
 }
 
@@ -48,12 +48,14 @@
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-12);
+  gap: var(--space-8);
   align-items: center;
 }
 
-/* ─── Copy ──────────────────────────────────────────────── */
-.hero-content { max-width: 620px; }
+/* ─── Left Column: Copy & Actions ────────────────────────── */
+.hero-content {
+  max-width: 600px;
+}
 
 .hero-badge {
   display: inline-flex;
@@ -101,7 +103,7 @@
 .hero-subheading {
   font-size: 1.02rem;
   color: var(--text-white-2);
-  max-width: 480px;
+  max-width: 500px;
   margin-bottom: var(--space-6);
   line-height: 1.68;
 }
@@ -126,43 +128,37 @@
 /* ─── CTA group ─────────────────────────────────────────── */
 .hero-cta-group {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-bottom: var(--space-5);
-}
-
-/* PRIMARY: WhatsApp button — extends btn-primary with icon */
-.hero-cta-wa {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  white-space: nowrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
-/* SECONDARY: Call button */
+/* PRIMARY: Call button */
 .hero-cta-call {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: 10px;
   white-space: nowrap;
-  min-height: 50px;
-  padding: 12px var(--space-6);
+  min-height: 52px;
+  padding: 12px 28px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--grad-brand-vivid);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
   font-family: var(--font-heading);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  transition: background var(--duration-base) var(--ease-luxury),
-              border-color var(--duration-base) var(--ease-luxury);
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(123, 44, 191, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform var(--duration-base) var(--ease-luxury),
+              box-shadow var(--duration-base) var(--ease-luxury),
+              background var(--duration-base) var(--ease-luxury);
 }
 
 .hero-cta-call:hover {
-  background: rgba(255, 255, 255, 0.17);
-  border-color: rgba(255, 255, 255, 0.36);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(123, 44, 191, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, var(--p-bright) 0%, var(--p-lavender) 60%, var(--ps-pink) 100%);
 }
 
 .hero-cta-icon {
@@ -175,20 +171,20 @@
 }
 
 .hero-cta-icon svg { width: 18px; height: 18px; }
-.hero-cta-icon--phone svg { width: 16px; height: 16px; }
+.hero-cta-icon--phone svg { width: 17px; height: 17px; }
 
 .hero-cta-dot {
-  opacity: 0.5;
+  opacity: 0.6;
   font-size: 0.9em;
 }
 
 .hero-cta-num {
-  font-size: 0.82rem;
-  font-weight: 500;
-  opacity: 0.72;
+  font-size: 0.88rem;
+  font-weight: 600;
+  opacity: 0.92;
 }
 
-.hero-explore { margin-top: var(--space-2); }
+.hero-explore { margin-top: var(--space-1); }
 
 .hero-link {
   display: inline-flex;
@@ -206,17 +202,25 @@
 .hero-link:hover { color: var(--p-accent); }
 .hero-link:hover svg { transform: translateX(4px); }
 
-/* ─── Visual column ─────────────────────────────────────── */
-.hero-visual { position: relative; width: 100%; }
+/* ─── Right Column: Visual + Form Composition ────────────── */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+}
 
 .hero-image-frame {
   position: relative;
+  width: 100%;
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid rgba(199, 125, 255, 0.26);
-  box-shadow: 0 26px 70px rgba(16, 0, 43, 0.55),
+  box-shadow: 0 20px 50px rgba(16, 0, 43, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
 }
 
 .hero-image {
@@ -249,38 +253,107 @@
   padding: 5px 12px;
 }
 
+.hero-form-wrapper {
+  width: 100%;
+}
+
+.hero-form-wrapper .hero-form {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0;
+}
+
 
 /* ─── Breakpoints ───────────────────────────────────────── */
 
-/* Mobile CTA sizing — keep one-line at ≤ 430px */
-@media (max-width: 430px) {
-  .hero-cta-wa,
-  .hero-cta-call {
-    font-size: 0.84rem;
-    padding: 11px var(--space-4);
-    min-height: 46px;
+/* Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 84px 0 36px;
   }
-  .hero-cta-num { font-size: 0.74rem; }
+
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .hero-content {
+    order: 1;
+    max-width: 100%;
+  }
+
+  .hero-right {
+    order: 2;
+    width: 100%;
+    margin-left: 0;
+    gap: 0;
+  }
+
+  /* Large clinic image removed from first mobile hero view */
+  .hero-image-frame {
+    display: none;
+  }
+
+  .hero-cta-call {
+    width: 100%;
+    font-size: 0.88rem;
+    padding: 12px var(--space-4);
+    min-height: 48px;
+  }
+
+  .hero-cta-num { font-size: 0.78rem; }
 }
 
-@media (min-width: 560px) {
-  .hero-cta-group { flex-direction: row; align-items: center; }
-  .hero-cta-wa,
-  .hero-cta-call { flex: 0 1 auto; }
-}
-
-@media (min-width: 1024px) {
+/* Tablet (768px – 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--space-14);
-    align-items: center;
+    gap: var(--space-8);
+    align-items: start;
   }
 
-  .hero-visual { padding-bottom: 0; }
-  .hero-image-frame { aspect-ratio: 3 / 2; }
+  .hero-right {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .hero-image-frame {
+    aspect-ratio: 16 / 10;
+  }
 }
 
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  .hero-section {
+    padding: clamp(88px, 10vh, 120px) 0 clamp(48px, 6vh, 80px);
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(32px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .hero-right {
+    max-width: 440px;
+    margin-left: auto;
+    gap: 16px;
+  }
+
+  .hero-image-frame {
+    aspect-ratio: 16 / 9.5;
+  }
+}
+
+/* Wide Desktop (≥ 1280px) */
 @media (min-width: 1280px) {
-  .hero-grid { gap: var(--space-16); }
-  .hero-image-frame { aspect-ratio: 4 / 3; }
+  .hero-grid {
+    gap: var(--space-12);
+  }
+
+  .hero-right {
+    max-width: 460px;
+    gap: 18px;
+  }
 }
