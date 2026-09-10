@@ -119,6 +119,14 @@ export default function Navbar({ route, navigate }: NavbarProps) {
     }
   }, [mobileOpen]);
 
+  /* Close the drawer on Escape — same pattern as ClinicGallery's lightbox */
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mobileOpen]);
+
   useEffect(() => () => window.clearTimeout(menuTimer.current), []);
 
   const closeAll = () => {
