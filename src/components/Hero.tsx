@@ -83,12 +83,12 @@ export default function Hero() {
 
             <motion.div variants={fadeUp} className="hero-cta-group">
               {/* PRIMARY: Call Clinic */}
-              <a href={CLINIC.phoneHref}
-                className="hero-cta-call" aria-label={`Call Crown Dental: ${CLINIC.phoneDisplay}`}>
+              <a href={CLINIC.receptionPhoneHref}
+                className="hero-cta-call" aria-label={`Call Crown Dental: ${CLINIC.receptionPhoneDisplay}`}>
                 <span className="hero-cta-icon hero-cta-icon--phone" aria-hidden="true"><PhoneIcon /></span>
                 <span>Call Clinic</span>
                 <span className="hero-cta-dot" aria-hidden="true">&middot;</span>
-                <span className="hero-cta-num">{CLINIC.phoneDisplay}</span>
+                <span className="hero-cta-num">{CLINIC.receptionPhoneDisplay}</span>
               </a>
             </motion.div>
 

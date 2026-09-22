@@ -281,11 +281,11 @@ export default function Navbar({ route, navigate }: NavbarProps) {
 
           {/* Desktop utility + CTA */}
           <div className="navbar-actions">
-            <a href={CLINIC.phoneHref} className="navbar-phone">
+            <a href={CLINIC.receptionPhoneHref} className="navbar-phone">
               <span className="navbar-phone-icon"><PhoneIcon /></span>
               <span className="navbar-phone-text">
                 <span className="navbar-phone-label">Consultation</span>
-                <span className="navbar-phone-num">{CLINIC.phoneDisplay}</span>
+                <span className="navbar-phone-num">{CLINIC.receptionPhoneDisplay}</span>
               </span>
             </a>
             <a

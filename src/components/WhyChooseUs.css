@@ -194,6 +194,19 @@
 }
 
 /* ─── Breakpoints ───────────────────────────────────────── */
+
+/* Narrow mobile: the clamp floor of 1.85rem is too large for the
+   ~310–380px content column, causing 5–6 line wraps on the heading.
+   Drop the minimum size so it fits naturally in 2–3 lines. */
+@media (max-width: 479px) {
+  .why-title {
+    font-size: clamp(1.5rem, 5.5vw, 1.8rem);
+  }
+  .why-intro {
+    max-width: none;
+  }
+}
+
 @media (min-width: 1024px) {
   .why-grid {
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);

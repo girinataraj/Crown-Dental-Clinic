@@ -37,10 +37,17 @@
    Measured bounding boxes confirmed real overlap at 1024px AND
    1440px before this was made unconditional. Applied to the two
    content blocks directly (not the shared .container) so it can't
-   collide with .container's own responsive padding-inline rules. */
-.experience-content,
-.journey-row {
-  margin-right: 170px;
+   collide with .container's own responsive padding-inline rules.
+   
+   On narrow mobile (< 768px) the floating widget is a fixed button
+   in the bottom-right corner and does NOT overlap the scrolling
+   content — applying 170px here would shrink the ~312–382px
+   column to ~140–212px, cramping journey cards to the left edge. */
+@media (min-width: 768px) {
+  .experience-content,
+  .journey-row {
+    margin-right: 170px;
+  }
 }
 
 /* 170px was sized for the single-column layouts below 1024px, where

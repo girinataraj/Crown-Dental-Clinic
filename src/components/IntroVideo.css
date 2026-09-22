@@ -1,83 +1,203 @@
+/* ================================================================
+   Intro Video Overlay — Crown Dental & Cosmetology Clinic
+   Full clinic walkthrough video experience with responsive 16:9 framing
+   ================================================================ */
+
 .intro-container {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 200; /* High enough to cover content during intro */
+  height: 100dvh;
+  z-index: 200;
   overflow: hidden;
-  background-color: var(--color-deep-navy);
-  pointer-events: all; /* Blocks interaction while intro is active */
+  background-color: var(--p-void, #10002B);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
 }
 
-.intro-container.intro-completed {
-  pointer-events: none; /* Immediately stop blocking once complete */
-}
-
-.intro-visual-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.intro-video-element {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-}
-
-.intro-bloom-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 40%, var(--color-soft-lavender) 0%, var(--color-rose-accent) 40%, var(--color-deep-navy) 100%);
-  opacity: 0;
-  animation: introPulse 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes introPulse {
-  0% { opacity: 0; transform: scale(1.1); }
-  50% { opacity: 0.5; transform: scale(1); }
-  100% { opacity: 0.8; transform: scale(1.05); }
-}
-
-.intro-dark-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  z-index: 2;
+.intro-container.intro-exiting {
   pointer-events: none;
 }
 
-.intro-hero-gradient {
+/* ─── Ambient Glow ─── */
+.intro-ambient-glow {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, var(--color-off-white) 90%);
-  z-index: 3;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-  pointer-events: none; /* Never block interaction */
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(90, 24, 154, 0.45) 0%,
+    rgba(60, 9, 108, 0.25) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
-.intro-completed .intro-hero-gradient {
-  opacity: 1;
+/* ─── Top Brand Badge ─── */
+.intro-brand-badge {
+  position: absolute;
+  top: clamp(16px, 3vh, 32px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(36, 0, 70, 0.65);
+  border: 1px solid rgba(199, 125, 255, 0.25);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
-.intro-completed .intro-bloom-bg {
-  /* When intro completes, shift the bloom into a bright hero background */
-  animation: none;
-  opacity: 1;
-  background: radial-gradient(circle at 50% 0%, var(--color-soft-lavender) 0%, rgba(245, 214, 214, 0.2) 60%, var(--color-off-white) 100%);
-  transition: background 2s ease;
+.intro-brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 0 8px rgba(37, 211, 102, 0.7);
+}
+
+.intro-brand-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+}
+
+.intro-brand-tag {
+  font-size: 0.7rem;
+  color: rgba(224, 170, 255, 0.85);
+  padding-left: 6px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Video Wrapper & Framing ─── */
+.intro-video-wrapper {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Desktop & Landscape: Cinematic full bleed */
+@media (min-width: 769px) and (orientation: landscape) {
+  .intro-video-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .intro-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* Mobile & Portrait Screens: Contained 16:9 framing (Preserves full clinic scene without cropping) */
+@media (max-width: 768px), (orientation: portrait) {
+  .intro-video-wrapper {
+    width: calc(100% - 32px);
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 
+      0 20px 50px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(199, 125, 255, 0.25);
+    background: #000000;
+  }
+
+  .intro-video-element {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+/* ─── Skip Button ─── */
+.intro-skip-btn {
+  position: absolute;
+  bottom: clamp(20px, 4vh, 36px);
+  right: clamp(16px, 3vw, 36px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: rgba(36, 0, 70, 0.7);
+  border: 1px solid rgba(199, 125, 255, 0.35);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.intro-skip-btn:hover,
+.intro-skip-btn:focus-visible {
+  background: rgba(60, 9, 108, 0.9);
+  border-color: rgba(199, 125, 255, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(123, 44, 191, 0.35);
+}
+
+/* ─── Blocked Autoplay Fallback ─── */
+.intro-blocked-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 0, 43, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 8;
+}
+
+.intro-play-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--p-bright, #7B2CBF), var(--p-royal, #3C096C));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 12px 32px rgba(123, 44, 191, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intro-play-badge:hover {
+  transform: scale(1.04);
+  box-shadow: 0 16px 40px rgba(123, 44, 191, 0.7);
+}
+
+/* ─── Initial Soft Fade From Black ─── */
+.intro-initial-fade {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  z-index: 20;
+  pointer-events: none;
 }
