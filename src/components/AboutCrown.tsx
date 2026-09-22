@@ -23,21 +23,21 @@ export default function AboutCrown() {
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="about-collage"
           >
             <figure className="ac-tile ac-tile--tall">
-              <img src={IMAGES.dentalSuite}
-                alt="Dental operatory suite at Crown Dental &amp; Cosmetology Clinic" loading="lazy" />
+              <img src={IMAGES.interiorMain}
+                alt="Crown Dental &amp; Cosmetology Clinic reception and waiting lounge" loading="lazy" />
             </figure>
             <figure className="ac-tile ac-tile--top">
-              <img src={IMAGES.cosmetologySuite}
-                alt="Medical cosmetology treatment room at Crown Dental &amp; Cosmetology Clinic" loading="lazy" />
+              <img src={IMAGES.interiorAlt}
+                alt="Crown Clinic waiting lounge and clinical awards display" loading="lazy" />
             </figure>
             <figure className="ac-tile ac-tile--bottom">
               <img src={IMAGES.exterior}
-                alt="Crown Dental &amp; Cosmetology Clinic exterior in Erode" loading="lazy" />
+                alt="Crown Dental &amp; Cosmetology Clinic exterior facade in Erode" loading="lazy" />
             </figure>
 
             <div className="ac-badge" aria-label="10 plus years of care">
@@ -50,7 +50,7 @@ export default function AboutCrown() {
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="about-content"
           >

@@ -102,10 +102,10 @@ export default function Hero() {
           {/* ── Right Column: Clinic image + Quick Consultation card ── */}
           <motion.div variants={fadeUp} className="hero-right">
             <div className="hero-image-frame">
-              <img src={IMAGES.dentalSuite}
-                alt="Dental treatment suite at Crown Dental &amp; Cosmetology Clinic, Erode"
+              <img src={IMAGES.interiorMain}
+                alt="Crown Dental &amp; Cosmetology Clinic Reception and Lounge, Erode"
                 className="hero-image" />
-              <span className="hero-image-tag">Crown Dental Suite · Erode</span>
+              <span className="hero-image-tag">Crown Clinic Lounge · Erode</span>
             </div>
 
             <div className="hero-form-wrapper">

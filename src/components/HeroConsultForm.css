@@ -7,7 +7,7 @@
 
 .hero-form {
   margin-top: 0;
-  padding: 24px 28px;
+  padding: 16px 20px;
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
@@ -27,15 +27,15 @@
 .hero-form-header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 18px;
+  gap: 2px;
+  margin-bottom: 10px;
   text-align: left;
   align-items: flex-start;
 }
 
 .hero-form-eyebrow {
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -46,9 +46,9 @@
 }
 
 .hero-form-hint {
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   color: var(--text-white-2);
-  line-height: 1.5;
+  line-height: 1.35;
   margin: 0;
   text-align: left;
 }
@@ -56,15 +56,15 @@
 .hero-form-field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  margin-bottom: 16px;
+  gap: 4px;
+  margin-bottom: 10px;
   text-align: left;
   align-items: stretch;
 }
 
 .hero-form-field label {
   font-family: var(--font-heading);
-  font-size: 0.68rem;
+  font-size: 0.63rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -75,14 +75,14 @@
 
 .hero-form-field input {
   width: 100%;
-  min-height: 48px;
-  padding: 12px 16px;
+  min-height: 40px;
+  padding: 8px 12px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(199, 125, 255, 0.22);
   background: rgba(255, 255, 255, 0.06);
   color: #fff;
   font-family: var(--font-body);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   box-sizing: border-box;
   transition: border-color var(--duration-base) var(--ease-luxury),
               background var(--duration-base) var(--ease-luxury);
@@ -102,21 +102,21 @@
 }
 
 .hero-form-error {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: #f87171;
   margin-top: 2px;
 }
 
 .hero-form-submit {
   width: 100%;
-  min-height: 50px;
-  margin-top: 6px;
+  min-height: 42px;
+  margin-top: 2px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
 }
 
@@ -124,23 +124,48 @@
 
 @media (max-width: 767px) {
   .hero-form {
-    padding: 20px;
+    padding: 16px 14px;
     max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .hero-form-header {
+    gap: 3px;
+    margin-bottom: 10px;
+  }
+
+  .hero-form-eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .hero-form-hint {
+    font-size: 0.8rem;
+  }
+
+  .hero-form-field {
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .hero-form-field label {
+    font-size: 0.63rem;
   }
 
   .hero-form-field input {
-    min-height: 48px;
-    font-size: 0.9rem;
+    min-height: 40px;
+    padding: 8px 12px;
+    font-size: 0.86rem;
   }
 
   .hero-form-submit {
-    min-height: 48px;
-    font-size: 0.88rem;
+    min-height: 42px;
+    font-size: 0.86rem;
+    margin-top: 2px;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-form {
-    padding: 24px 28px;
+    padding: 16px 20px;
   }
 }

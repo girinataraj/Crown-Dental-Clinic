@@ -137,6 +137,10 @@
   display: block;
 }
 
+.exp-img-main { object-position: center 42%; }
+.exp-img-square { object-position: center 30%; }
+.exp-img-horiz { object-position: center 40%; }
+
 .exp-collage-right > img {
   border-radius: var(--radius-lg);
   border: 1px solid rgba(199, 125, 255, 0.20);

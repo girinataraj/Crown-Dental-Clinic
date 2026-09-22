@@ -38,17 +38,17 @@ export default function CrownExperience() {
           <motion.div
             initial={{ opacity: 0, x: -22 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="experience-visuals"
           >
             <div className="exp-collage">
               <div className="exp-collage-left">
-                <img src={IMAGES.dentalSuite} alt="Dental operatory at Crown Clinic" className="exp-img-main" loading="lazy" />
+                <img src={IMAGES.interiorMain} alt="Crown Dental &amp; Cosmetology Clinic reception and lounge" className="exp-img-main" loading="lazy" />
               </div>
               <div className="exp-collage-right">
-                <img src={IMAGES.kavin} alt="Expertise at Crown" className="exp-img-square" loading="lazy" />
-                <img src={IMAGES.cosmetologySuite} alt="Medical cosmetology room" className="exp-img-horiz" loading="lazy" />
+                <img src={IMAGES.exterior} alt="Crown Dental &amp; Cosmetology Clinic exterior facade in Erode" className="exp-img-square" loading="lazy" />
+                <img src={IMAGES.interiorAlt} alt="Crown Clinic patient lounge and accreditations" className="exp-img-horiz" loading="lazy" />
               </div>
               
               <div className="exp-badge-overlap">
@@ -63,7 +63,7 @@ export default function CrownExperience() {
           <motion.div
             initial={{ opacity: 0, x: 22 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="experience-content"
           >
@@ -116,7 +116,7 @@ export default function CrownExperience() {
               key={j.step}
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="journey-card"
             >

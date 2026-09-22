@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="why-content"
           >
@@ -60,7 +60,7 @@ export default function WhyChooseUs() {
                   key={r.title}
                   initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-30px' }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   className="why-item"
                 >
@@ -78,13 +78,13 @@ export default function WhyChooseUs() {
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="why-visual"
           >
             <div className="why-image-frame">
-              <img src={IMAGES.exterior}
-                alt="Crown Dental &amp; Cosmetology Clinic premises in Erode" loading="lazy" />
+              <img src={IMAGES.exteriorNight}
+                alt="Crown Dental &amp; Cosmetology Clinic illuminated exterior and practice signage in Erode" loading="lazy" />
             </div>
 
             <a href={CLINIC.phoneHref} className="why-help-card">

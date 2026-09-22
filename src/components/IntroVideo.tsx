@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CLIENT_MEDIA } from '../data/clinic';
 import './IntroVideo.css';
 
 interface IntroVideoProps {
@@ -45,20 +46,15 @@ export default function IntroVideo({ onComplete }: IntroVideoProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* 
-        NOTE: Since a real video file is pending, this uses a high-end CSS gradient 
-        bloom to simulate the atmospheric luxury feel. When the video is added, 
-        it should be placed here with object-fit: cover.
-      */}
       <div className="intro-visual-layer">
         <video 
           className="intro-video-element"
           autoPlay 
           muted 
           playsInline 
-          loop={!isPlaying} // Keep looping the final frames as hero bg
+          loop={!isPlaying}
         >
-          {/* <source src="/videos/intro.mp4" type="video/mp4" /> */}
+          <source src={CLIENT_MEDIA.tourVideo} type="video/mp4" />
         </video>
         
         {/* Fallback Atmospheric Bloom */}

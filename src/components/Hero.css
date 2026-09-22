@@ -2,13 +2,17 @@
    Hero — editorial split: copy/actions (left) + clinic visual & form (right)
    ================================================================ */
 
+/* ================================================================
+   Hero — editorial split: copy/actions (left) + clinic visual & form (right)
+   ================================================================ */
+
 .hero-section {
   background: var(--atm-hero);
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: clamp(120px, 15vh, 168px) 0 clamp(56px, 8vh, 88px);
+  padding: clamp(140px, 16vh, 168px) 0 clamp(104px, 12vh, 136px);
   z-index: 1;
 }
 
@@ -64,9 +68,9 @@
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(199, 125, 255, 0.22);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  padding: 7px var(--space-4);
+  padding: 6px var(--space-4);
   border-radius: var(--radius-full);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
   white-space: nowrap;
 }
 
@@ -83,12 +87,12 @@
 
 .hero-headline {
   font-family: var(--font-heading);
-  font-size: clamp(2.35rem, 8.4vw, 4.25rem);
+  font-size: clamp(2.35rem, 3.8vw, 3.75rem);
   font-weight: 800;
   color: #fff;
   letter-spacing: -0.035em;
-  line-height: 1.06;
-  margin-bottom: var(--space-5);
+  line-height: 1.08;
+  margin-bottom: var(--space-4);
   text-wrap: balance;
 }
 
@@ -101,28 +105,28 @@
 }
 
 .hero-subheading {
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   color: var(--text-white-2);
   max-width: 500px;
-  margin-bottom: var(--space-6);
-  line-height: 1.68;
+  margin-bottom: var(--space-5);
+  line-height: 1.62;
 }
 
 .hero-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .hero-chip {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radius-full);
-  padding: 6px 13px;
+  padding: 5px 12px;
 }
 
 /* ─── CTA group ─────────────────────────────────────────── */
@@ -130,7 +134,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 /* PRIMARY: Call button */
@@ -140,14 +144,14 @@
   justify-content: center;
   gap: 10px;
   white-space: nowrap;
-  min-height: 52px;
-  padding: 12px 28px;
+  min-height: 48px;
+  padding: 11px 24px;
   border-radius: var(--radius-full);
   background: var(--grad-brand-vivid);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
   box-shadow: 0 4px 20px rgba(123, 44, 191, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: transform var(--duration-base) var(--ease-luxury),
@@ -184,7 +188,7 @@
   opacity: 0.92;
 }
 
-.hero-explore { margin-top: var(--space-1); }
+.hero-explore { margin-top: 2px; }
 
 .hero-link {
   display: inline-flex;
@@ -193,8 +197,8 @@
   color: var(--text-white-2);
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.9375rem;
-  min-height: 44px;
+  font-size: 0.9rem;
+  min-height: 38px;
   transition: color var(--duration-base) var(--ease-luxury);
 }
 
@@ -202,31 +206,32 @@
 .hero-link:hover { color: var(--p-accent); }
 .hero-link:hover svg { transform: translateX(4px); }
 
-/* ─── Right Column: Visual + Form Composition ────────────── */
 .hero-right {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   width: 100%;
-  max-width: 480px;
+  max-width: 440px;
   margin-left: auto;
 }
 
 .hero-image-frame {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(199, 125, 255, 0.26);
-  box-shadow: 0 20px 50px rgba(16, 0, 43, 0.5),
+  box-shadow: 0 16px 40px rgba(16, 0, 43, 0.45),
               inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 6.2;
+  max-height: 165px;
 }
 
 .hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 42%;
   display: block;
 }
 
@@ -240,17 +245,17 @@
 
 .hero-image-tag {
   position: absolute;
-  bottom: 14px;
-  left: 14px;
+  bottom: 10px;
+  left: 12px;
   z-index: 2;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #fff;
   background: rgba(16, 0, 43, 0.85);
   border: 1px solid rgba(199, 125, 255, 0.28);
   border-radius: var(--radius-full);
-  padding: 5px 12px;
+  padding: 4px 10px;
 }
 
 .hero-form-wrapper {
@@ -263,19 +268,18 @@
   margin-top: 0;
 }
 
-
 /* ─── Breakpoints ───────────────────────────────────────── */
 
 /* Mobile (≤ 767px) */
 @media (max-width: 767px) {
   .hero-section {
-    padding: 84px 0 36px;
+    padding: 116px 0 68px;
   }
 
   .hero-grid {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 18px;
   }
 
   .hero-content {
@@ -283,16 +287,39 @@
     max-width: 100%;
   }
 
-  .hero-right {
-    order: 2;
-    width: 100%;
-    margin-left: 0;
-    gap: 0;
+  .hero-badge {
+    margin-bottom: 12px;
+    padding: 5px 12px;
   }
 
-  /* Large clinic image removed from first mobile hero view */
-  .hero-image-frame {
-    display: none;
+  .hero-badge-text {
+    font-size: 0.65rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.75rem, 7.2vw, 2.25rem);
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
+
+  .hero-subheading {
+    font-size: 0.92rem;
+    line-height: 1.58;
+    margin-bottom: 16px;
+  }
+
+  .hero-chips {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .hero-chip {
+    font-size: 0.72rem;
+    padding: 5px 11px;
+  }
+
+  .hero-cta-group {
+    margin-bottom: 8px;
   }
 
   .hero-cta-call {
@@ -303,57 +330,112 @@
   }
 
   .hero-cta-num { font-size: 0.78rem; }
+
+  .hero-explore {
+    margin-top: 0;
+  }
+
+  .hero-link {
+    min-height: 38px;
+    font-size: 0.88rem;
+  }
+
+  .hero-right {
+    order: 2;
+    width: 100%;
+    margin-left: 0;
+    gap: 0;
+  }
+
+  /* Large clinic image hidden on mobile */
+  .hero-image-frame {
+    display: none;
+  }
 }
 
 /* Tablet (768px – 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .hero-section {
+    padding: 136px 0 96px;
+  }
+
   .hero-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--space-8);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-6);
     align-items: start;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.85rem, 3.4vw, 2.25rem);
+    line-height: 1.1;
+  }
+
+  .hero-subheading {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-chips {
+    gap: 6px;
+    margin-bottom: var(--space-5);
+  }
+
+  .hero-chip {
+    font-size: 0.72rem;
+    padding: 5px 11px;
+  }
+
+  .hero-cta-call {
+    font-size: 0.88rem;
+    padding: 11px 20px;
+    min-height: 46px;
   }
 
   .hero-right {
     max-width: 100%;
     margin-left: 0;
+    gap: 10px;
   }
 
   .hero-image-frame {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 6.4;
+    max-height: 155px;
   }
 }
 
 /* Desktop (≥ 1024px) */
 @media (min-width: 1024px) {
   .hero-section {
-    padding: clamp(88px, 10vh, 120px) 0 clamp(48px, 6vh, 80px);
+    padding: clamp(144px, 16vh, 172px) 0 clamp(108px, 12vh, 136px);
   }
 
   .hero-grid {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: clamp(32px, 4vw, 56px);
+    gap: clamp(32px, 3.5vw, 52px);
     align-items: start;
   }
 
   .hero-right {
     max-width: 440px;
     margin-left: auto;
-    gap: 16px;
+    gap: 12px;
   }
 
   .hero-image-frame {
-    aspect-ratio: 16 / 9.5;
+    aspect-ratio: 16 / 6.2;
+    max-height: 165px;
   }
 }
 
 /* Wide Desktop (≥ 1280px) */
 @media (min-width: 1280px) {
   .hero-grid {
-    gap: var(--space-12);
+    gap: var(--space-10);
   }
 
   .hero-right {
-    max-width: 460px;
-    gap: 18px;
+    max-width: 450px;
+    gap: 12px;
   }
 }

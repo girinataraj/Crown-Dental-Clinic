@@ -68,7 +68,7 @@ export default function FeaturedTreatments({ navigate }: Props) {
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true }}
               className={`tcard tcard--${t.category.toLowerCase()}`}
             >
               <a

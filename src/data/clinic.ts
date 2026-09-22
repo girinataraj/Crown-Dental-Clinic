@@ -42,11 +42,36 @@ export function whatsappFor(treatment?: string) {
   return `${CLINIC.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
-/* ─── Clinic imagery (real Crown assets only) ─────────────────── */
+/* ─── Real Client Media (imported through Vite asset pipeline) ─── */
+import heroInteriorImg from '../assets/2e840b6c-e88c-4deb-aabe-fa2e1ca48d9a.jpg';
+import exteriorDayImg from '../assets/3c1bd7d8-00f2-48b3-961b-9639e6ce5d97.jpg';
+import exteriorNightImg from '../assets/a8e2c7e0-7a8d-49e0-88b3-8fe11927171e.jpg';
+import interiorAltImg from '../assets/7914c79f-46a6-49f1-a38e-e676abce13f0.jpg';
+import milestoneAlignerImg from '../assets/0d250632-d710-43a7-b145-be8e888adfac.jpg';
+import clinicTourVideo from '../assets/9b7b4fc9-84e1-4c56-8a70-4fd1114ad68d.mp4';
+import receptionVideo from '../assets/3a604ba8-5c1b-4276-a906-28e28fca0d53.mp4';
+import entranceVideo from '../assets/f89e1ed4-5547-41b8-beab-f5f12ca8371d.mp4';
+
+export const CLIENT_MEDIA = {
+  interiorHero: heroInteriorImg,
+  interiorAlt: interiorAltImg,
+  exteriorDay: exteriorDayImg,
+  exteriorNight: exteriorNightImg,
+  milestoneAligners: milestoneAlignerImg,
+  tourVideo: clinicTourVideo,
+  receptionVideo: receptionVideo,
+  entranceVideo: entranceVideo,
+} as const;
+
+/* ─── Clinic imagery (real Crown assets) ─────────────────── */
 export const IMAGES = {
   logo: '/images/logo.png',
   logoText: '/images/Logo-text.png',
-  exterior: '/images/clinic-exterior.png',
+  exterior: exteriorDayImg,
+  exteriorNight: exteriorNightImg,
+  interiorMain: heroInteriorImg,
+  interiorAlt: interiorAltImg,
+  milestone: milestoneAlignerImg,
   dentalSuite: '/images/treatment-room-2.png',
   cosmetologySuite: '/images/treatment-room-1.png',
   drMonnica: '/images/Doc.PNG',

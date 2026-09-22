@@ -66,8 +66,11 @@
 .ac-tile:hover img { transform: scale(1.05); }
 
 .ac-tile--tall   { grid-column: 1; grid-row: 1 / span 2; }
+.ac-tile--tall img { object-position: center 42%; }
 .ac-tile--top    { grid-column: 2; grid-row: 1; }
+.ac-tile--top img { object-position: center 40%; }
 .ac-tile--bottom { grid-column: 2; grid-row: 2; }
+.ac-tile--bottom img { object-position: center 30%; }
 
 /* Experience medallion — sits on the collage seam like the reference */
 .ac-badge {

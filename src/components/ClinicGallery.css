@@ -269,16 +269,22 @@
 
 /* ─── Breakpoints ───────────────────────────────────────── */
 @media (min-width: 640px) {
-  .gallery-support { grid-template-columns: repeat(2, 1fr); }
+  .gallery-support {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
 }
 
 @media (min-width: 1024px) {
   .gallery-editorial {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: var(--space-6);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: var(--space-5);
     align-items: stretch;
   }
-  .gallery-feature { aspect-ratio: auto; height: 100%; min-height: 460px; }
-  .gallery-support { grid-template-columns: 1fr; gap: var(--space-6); }
-  .gallery-support-item { aspect-ratio: auto; height: 100%; }
+  .gallery-feature { aspect-ratio: auto; height: 100%; min-height: 440px; }
+  .gallery-support {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  .gallery-support-item { aspect-ratio: 4 / 3; }
 }

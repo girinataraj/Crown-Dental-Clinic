@@ -12,7 +12,7 @@
 
 .trust-panel {
   position: relative;
-  margin-top: clamp(-88px, -8vw, -44px);
+  margin-top: -24px;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-2);
@@ -78,6 +78,7 @@
 
 @media (min-width: 768px) {
   .trust-panel {
+    margin-top: clamp(-48px, -4.2vw, -36px);
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
     padding: var(--space-6) var(--space-4);
