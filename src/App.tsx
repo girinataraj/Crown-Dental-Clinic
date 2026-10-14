@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 // Core
-import IntroVideo from './components/IntroVideo';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 
@@ -55,66 +53,29 @@ function HomePage({ navigate }: HomePageProps) {
 }
 
 function App() {
-  const [introComplete, setIntroComplete] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
   const { route, navigate } = useRoute();
 
-  // Lock scroll from the very start until intro finishes
+  /* Honour a direct/bookmarked in-page-section link, e.g. site.com/#doctors.
+     Treatment routes (#/treatments/:id) and plain home loads are unaffected. */
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    document.body.style.touchAction = 'none';
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
-    };
-  }, []);
-
-  const handleIntroComplete = () => {
-    document.body.style.overflow = '';
-    document.body.style.touchAction = '';
-    setTimeout(() => {
-      setIntroComplete(true);
-      setShowIntro(false);
-    }, 300);
-  };
-
-  /* Honour a direct/bookmarked in-page-section link, e.g. site.com/#doctors,
-     once the home page has actually mounted past the intro. Treatment
-     routes (#/treatments/:id) and plain home loads are unaffected. */
-  useEffect(() => {
-    if (!introComplete || route.name !== 'home' || !route.anchor) return;
+    if (route.name !== 'home' || !route.anchor) return;
     const el = document.querySelector(`#${route.anchor}`);
     if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: 'auto' }));
-  }, [introComplete, route]);
+  }, [route]);
 
   return (
-    <>
-      <AnimatePresence>
-        {showIntro && <IntroVideo onComplete={handleIntroComplete} />}
-      </AnimatePresence>
+    <div style={{ position: 'relative', zIndex: 1 }}>
+      <Navbar route={route} navigate={navigate} />
 
-      <AnimatePresence>
-        {introComplete && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            style={{ position: 'relative', zIndex: 1 }}
-          >
-            <Navbar route={route} navigate={navigate} />
+      {route.name === 'treatment' ? (
+        <TreatmentPage id={route.id} navigate={navigate} />
+      ) : (
+        <HomePage navigate={navigate} />
+      )}
 
-            {route.name === 'treatment' ? (
-              <TreatmentPage id={route.id} navigate={navigate} />
-            ) : (
-              <HomePage navigate={navigate} />
-            )}
-
-            <Footer navigate={navigate} />
-            <WhatsAppButton />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      <Footer navigate={navigate} />
+      <WhatsAppButton />
+    </div>
   );
 }
 
